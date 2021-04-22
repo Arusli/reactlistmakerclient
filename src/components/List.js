@@ -20,7 +20,7 @@ const List = ({list}) => {
     
     return (
         <div style={{textAlign: 'center'}}>
-            <div style={{margin: '40px'}}>
+            <div style={{margin: '40px', textAlign: 'left'}}>
                 {renderedList}
             </div>
             <div>

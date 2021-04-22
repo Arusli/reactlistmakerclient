@@ -16,17 +16,19 @@ const Input = () => {
 
     const onSubmit = (event) => {
 
-        if (term !== '') {
+        if (term !== '' && !list.includes(term.trim())) {
             event.preventDefault();
-            setList([...list, term]);
+            setList([...list, term.trim()]);
             console.log(term);
             console.log(list)   
             setTerm(''); 
         }
         
-        if (term === '') {
+        if (term === '' || list.includes(term.trim())) {
             event.preventDefault();
         }
+
+        
     }
 
     return (

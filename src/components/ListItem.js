@@ -8,20 +8,23 @@ import React, {useState} from 'react';
 const ListItem = ({item}) => {
 
     const [coloring, setColoring] = useState('black');
-    const [sizing, setSizing] = useState('2rem')
+    const [sizing, setSizing] = useState('2rem');
+    const [line, setline] = useState('none')
 
     const changeColoring = (e) => {
 
         e.preventDefault();
 
         if (coloring === 'black') {
-            setColoring('grey');
-            setSizing('1.6rem')
+            setColoring('lightgrey');
+            setSizing('2rem');
+            setline('line-through')
         }
 
-        if (coloring === 'grey') {
+        if (coloring === 'lightgrey') {
             setColoring('black');
-            setSizing('2rem')
+            setSizing('2rem');
+            setline('none');
         }
  
     };
@@ -31,8 +34,8 @@ const ListItem = ({item}) => {
 
     return (
         <div style={{color: coloring, fontSize: sizing, marginBottom: '10px'}}>
-            <a style={{color: coloring, textDecoration: 'none'}} href='/' onClick={changeColoring}>{item}</a>
-            <button style={{color: coloring, marginLeft: '8px', height: '1.5rem', width: '2rem'}} onClick={changeColoring}>&#10003;</button>
+            <button style={{color: coloring, marginRight: '8px', height: '1.5rem', width: '2rem', cursor: 'pointer'}} onClick={changeColoring}>&#10003;</button>
+            <a style={{color: coloring, textDecoration: line}} href='/' onClick={changeColoring}>{item}</a>
         </div>
     );
 }
