@@ -31,11 +31,11 @@ const Input = () => {
 
     return (
         <div>
-            <div>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <form onSubmit={onSubmit}>
                     <div>
-                        <input style={{textAlign: 'center'}} type="text" value={term} onChange={event => setTerm(event.target.value)}></input>
-                        <input style={{textAlign: 'center'}} type="submit" value="+"></input>
+                        <input style={{textAlign: 'center', marginRight: '10px', minWidth: '300px', minHeight: '30px', fontSize: '1.5rem'}} type="text" value={term} onChange={event => setTerm(event.target.value)}></input>
+                        <input style={{textAlign: 'center', height: '30px', width: '30px'}} type="submit" value="+"></input>
                     </div>
                 </form>
             </div>
