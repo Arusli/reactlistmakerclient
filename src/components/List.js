@@ -24,8 +24,7 @@ const List = ({list}) => {
                 {renderedList}
             </div>
             <div>
-                <br></br>
-                <button>Clear Checked Items</button>
+                <button>Clear Completed Items</button>
             </div>
         </div>
     );
