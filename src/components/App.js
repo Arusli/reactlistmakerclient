@@ -7,14 +7,10 @@ import List from './List';
 
 const App = () => {
     
-    
-    
-    
     return (
-        <div>
-            <h1>App</h1>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <h1>To Do List</h1>
             <Input />
-            <List />
         </div>
     );
         

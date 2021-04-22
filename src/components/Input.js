@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import List from './List';
 
 const Input = () => {
     
@@ -7,23 +8,40 @@ const Input = () => {
     // that state array will be mapped and generated the visible list
     
     //also need a search term state
+    const [term, setTerm] = useState('');
+    const [list, setList] = useState([]);
+
     
-    const onSubmit = event => {
-        event.preventDefault();
-        console.log('form submitted');
+   
+
+    const onSubmit = (event) => {
+
+        if (term !== '') {
+            event.preventDefault();
+            setList([...list, term]);
+            console.log(term);
+            console.log(list)   
+            setTerm(''); 
+        }
+        
+        if (term === '') {
+            event.preventDefault();
+        }
     }
 
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label>Enter Item</label>
-                </div>
-                <div>
-                    <input type="text"></input>
-                    <input type="submit" value="Add"></input>
-                </div>
-            </form>
+            <div>
+                <form onSubmit={onSubmit}>
+                    <div>
+                        <input style={{textAlign: 'center'}} type="text" value={term} onChange={event => setTerm(event.target.value)}></input>
+                        <input style={{textAlign: 'center'}} type="submit" value="+"></input>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <List list={list} />
+            </div>
         </div>
     );
 }
