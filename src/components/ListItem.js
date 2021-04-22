@@ -1,17 +1,13 @@
 import React, {useState} from 'react';
 
-
-// make two styles, one state for each, so that you can switch the styling when button is clicked. WON'T WORK.
-// use a similar idea somehow to update the array when the complete button is clicked.
-
-
 const ListItem = ({item}) => {
 
     const [coloring, setColoring] = useState('black');
     const [sizing, setSizing] = useState('2rem');
     const [line, setline] = useState('none')
+    const [completed, setCompleted] = useState(false);
 
-    const changeColoring = (e) => {
+    const checkOff = (e) => {
 
         e.preventDefault();
 
@@ -34,8 +30,8 @@ const ListItem = ({item}) => {
 
     return (
         <div style={{color: coloring, fontSize: sizing, marginBottom: '10px'}}>
-            <button style={{color: coloring, marginRight: '8px', height: '1.5rem', width: '2rem', cursor: 'pointer'}} onClick={changeColoring}>&#10003;</button>
-            <a style={{color: coloring, textDecoration: line}} href='/' onClick={changeColoring}>{item}</a>
+            <button style={{color: coloring, marginRight: '8px', height: '1.5rem', width: '2rem', cursor: 'pointer'}} onClick={checkOff}>&#10003;</button>
+            <a style={{color: coloring, textDecoration: line}} href='/' onClick={checkOff}>{item}</a>
         </div>
     );
 }

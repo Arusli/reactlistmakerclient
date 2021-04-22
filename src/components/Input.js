@@ -9,7 +9,7 @@ const Input = () => {
     
     //also need a search term state
     const [term, setTerm] = useState('');
-    const [list, setList] = useState([]);
+    const [list, setList] = useState([]); 
 
     
    
@@ -18,7 +18,7 @@ const Input = () => {
 
         if (term !== '' && !list.includes(term.trim())) {
             event.preventDefault();
-            setList([...list, term.trim()]);
+            setList([...list, term.trim()]); //possibly need to make this an object with properties {term: term, id: uuid}
             console.log(term);
             console.log(list)   
             setTerm(''); 
