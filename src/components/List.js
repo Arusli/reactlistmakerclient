@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ListItem from './ListItem';
 
-const List = ({list}) => {
-    let list2 = [...list];
+const List = ({list, setList}) => {
+   
+    
+    // USING REFS: https://reactjs.org/docs/refs-and-the-dom.html
+    // I THINK I NEED TO USE REFS TO CREATE THE NEXT ARRAY. 
+    // OTHERWISE EACH TIME I CHECK/UNCHECK A LIST ITEM IT WILL ADD/DELETE A NEW INSTANCE TO THE DATABASE. NOT WHAT WE WANT.
 
-  
+
     //use map to map an array of all the list items.
     //this items will be stored in an array in state.
 
@@ -14,9 +18,7 @@ const List = ({list}) => {
     //this needs to update when user clicks Clear Items Button. How?
     //needs to know via props/state which items in List Item were checked off.
     //maybe we can loop through the list items and see if their state is complete/incomplete and if so, use those to setList again.
-    const updateList = () => {
-        return 'updated list'
-    };
+
 
     const renderedList = list.map(
         (item) => {
@@ -29,9 +31,6 @@ const List = ({list}) => {
         <div style={{textAlign: 'center'}}>
             <div style={{margin: '40px', textAlign: 'left'}}>
                 {renderedList}
-            </div>
-            <div>
-                <button>Update List</button>
             </div>
         </div>
     );
