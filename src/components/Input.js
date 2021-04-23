@@ -17,10 +17,10 @@ const Input = () => {
         if (term !== '' && !list.includes(term.trim())) {
             const array = [...list, term.trim()];
             event.preventDefault();
-            setList(array); //possibly need to make this an object with properties {term: term, id: uuid}
+            setList(array); //possibly need to make this an object with properties {term: term, id: uuid}. //is this a "STALE CLOSURE PROBLEM?"
             // setList(['hamster', 'gerbil']);
             console.log(term);
-            setTimeout(() => console.log(list), 2000); 
+            setTimeout(() => console.log(list), 2000); //is this a "STALE CLOSURE PROBLEM?"
             setTerm(''); 
         }
         

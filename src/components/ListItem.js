@@ -36,7 +36,7 @@ const ListItem = ({item, list, setList}) => {
         <div style={{color: coloring, fontSize: sizing, marginBottom: '10px', display: 'flex', justifyContent: 'left', alignItems: 'center'}}>
             <button style={{color: coloring, marginRight: '8px', height: '2rem', width: '3rem', cursor: 'pointer'}} onClick={checkOff}>&#10003;</button>
             {item}
-            <button style={{color: 'red', marginLeft: '8px', height: '2rem', width: '3rem', cursor: 'pointer'}} onClick={updateList} >X</button>
+            <button style={{color: 'maroon', marginLeft: '8px', height: '2rem', width: '3rem', cursor: 'pointer'}} onClick={updateList} >X</button>
         </div>
     );
 }
