@@ -1,47 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import List from './List';
 
 const Input = () => {
     
-    //need to create an input field
-    // the value of this field will be stored to a state array 
-    // that state array will be mapped and generated the visible list
-    
-    //also need a search term state
     const [term, setTerm] = useState('');
-    const [list, setList] = useState(['default', 'default']); 
+    const [list, setList] = useState(['default', 'default2']); 
 
+    //why doesn't setList update immediately? https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
+    //https://reactjs.org/docs/hooks-effect.html
+    //https://linguinecode.com/post/why-react-setstate-usestate-does-not-update-immediately
 
-    //trial
-    const [nextList, setNextList] = useState([...list]);
-    
-    const AddToNextList = (item) => {
-        setNextList([...nextList, item.trim()]);
-    };
-   
-    //use lodash here?
-    const removeFromNextList = (item) => {
-        console.log('remove');
-    };
+    //STALE PROPS: https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
+
 
     const onSubmit = (event) => {
-
         if (term !== '' && !list.includes(term.trim())) {
+            const array = [...list, term.trim()];
             event.preventDefault();
-            setList([...list, term.trim()]); //possibly need to make this an object with properties {term: term, id: uuid}
-            setNextList([...nextList, term.trim()]);
+            setList(array); //possibly need to make this an object with properties {term: term, id: uuid}
+            // setList(['hamster', 'gerbil']);
             console.log(term);
-            console.log(list);
-            console.log(nextList);   
+            setTimeout(() => console.log(list), 2000); 
             setTerm(''); 
         }
         
         if (term === '' || list.includes(term.trim())) {
             event.preventDefault();
         }
-
-        
     }
+    
+    // useEffect( () => {
+    //     console.log(list)
+    // }, [list]);
 
     return (
         <div>
