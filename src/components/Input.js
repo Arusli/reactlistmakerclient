@@ -1,10 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import List from './List';
+import axios from 'axios';
 
 const Input = () => {
     
+    // axios.get()
+
     const [term, setTerm] = useState('');
-    const [list, setList] = useState(['default', 'default2']); 
+    const [list, setList] = useState([]); 
+
+    
+    useEffect( async () => {
+        await axios.get('http://localhost:3001/db')
+        .then( res => {
+            const array = [];
+            res.data.forEach( (element) => {
+                array.push(element.content);
+            })
+            console.log(array);
+            setList(array);
+        })
+    }, []); //if a blank array, this will only do once upon loading
+
+    
+    const makePostRequest = async (content) => {
+        //need a function that produces a data object {content: someting} to pass into post method.
+        await axios.post('http://localhost:3001/post', {
+            content: content
+        })
+        .then( res => {
+            console.log(res.data);
+        });
+    };
+    
 
     //why doesn't setList update immediately? https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
     //https://reactjs.org/docs/hooks-effect.html
@@ -13,8 +41,10 @@ const Input = () => {
     //STALE PROPS: https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
 
 
+    //need a post function here
     const onSubmit = (event) => {
         if (term !== '' && !list.includes(term.trim())) {
+            makePostRequest(term.trim());
             const array = [...list, term.trim()];
             event.preventDefault();
             setList(array); //possibly need to make this an object with properties {term: term, id: uuid}. //is this a "STALE CLOSURE PROBLEM?"
