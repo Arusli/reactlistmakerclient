@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const ListItem = ({item, list, setList}) => {
 
+    //styling states
     const [coloring, setColoring] = useState('black');
     const [sizing, setSizing] = useState('2rem');
     const [checked, setChecked] = useState(false);
@@ -25,8 +26,6 @@ const ListItem = ({item, list, setList}) => {
     };
 
     const makeDeleteRequest = (content) => {
-        //need a function that produces a data object {content: someting} to pass into post method.?
-        console.log('content:', content)
         axios.delete('http://localhost:3001/delete', {
             data: {
                 content: content
