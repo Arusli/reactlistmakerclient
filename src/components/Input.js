@@ -4,14 +4,11 @@ import axios from 'axios';
 
 const Input = () => {
     
-    // axios.get()
-
     const [term, setTerm] = useState('');
     const [list, setList] = useState([]); 
-
     
-    useEffect( async () => {
-        await axios.get('http://localhost:3001/db')
+    useEffect( () => {
+        axios.get('http://localhost:3001/db')
         .then( res => {
             const array = [];
             res.data.forEach( (element) => {
@@ -20,11 +17,11 @@ const Input = () => {
             console.log(array);
             setList(array);
         })
-    }, []); //if a blank array, this will only do once upon loading
+    }, []); //if a blank array, this will only run once upon loading
 
     
     const makePostRequest = async (content) => {
-        //need a function that produces a data object {content: someting} to pass into post method.
+        //need a function that produces a data object {content: someting} to pass into post method.?
         await axios.post('http://localhost:3001/post', {
             content: content
         })

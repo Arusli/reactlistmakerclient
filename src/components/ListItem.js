@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import _ from 'lodash';
+import axios from 'axios';
 
 const ListItem = ({item, list, setList}) => {
 
@@ -23,7 +24,22 @@ const ListItem = ({item, list, setList}) => {
         }
     };
 
+    const makeDeleteRequest = (content) => {
+        //need a function that produces a data object {content: someting} to pass into post method.?
+        console.log('content:', content)
+        axios.delete('http://localhost:3001/delete', {
+            data: {
+                content: content
+            }
+        })
+        .then( res => {
+            console.log(res.data);
+        });
+    };
+
     const updateList = () => {
+        console.log('item:',item);
+        makeDeleteRequest(item);
         const ar = [...list]; //I did this to trick setList to rerender instantly.
         setList(_.pull(ar, item));
         // setList(['test one', 'test two']);
