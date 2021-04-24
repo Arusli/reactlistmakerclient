@@ -78,14 +78,14 @@ const Input = () => {
     
     //TEST NEW ONSUBMIT
     const onSubmit = (event) => {
-        if (term !== '' && !termArray.includes(term.trim())) {
-            makePostRequest(term.trim());
+        if (term !== '') {
+            makePostRequest(term);
             event.preventDefault();
             makeGetRequest();
             setTerm(''); 
         }
         
-        if (term === '' || termArray.includes(term.trim())) {
+        if (term === '') {
             event.preventDefault();
         }
     }

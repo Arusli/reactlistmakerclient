@@ -9,7 +9,7 @@ const List = ({list, setList, makeGetRequest}) => {
     const renderedList = list.map(
         (item) => {
             return (
-                <ListItem item={item.content} list={list} setList={setList} key={item.id} /> //need key?
+                <ListItem item={item} list={list} setList={setList} key={item.id} /> //need key?
             );
         });
     
