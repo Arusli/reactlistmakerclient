@@ -6,7 +6,7 @@ const ListItem = ({item, list, setList}) => {
 
     //styling states
     const [coloring, setColoring] = useState('black');
-    const [sizing, setSizing] = useState('2rem');
+    // const [sizing, setSizing] = useState('2rem');
     const [checked, setChecked] = useState(false);
 
     const checkOff = (e) => {
@@ -15,13 +15,13 @@ const ListItem = ({item, list, setList}) => {
         if (!checked) {
             setChecked(true);
             setColoring('lightgrey');
-            setSizing('2rem');
+            // setSizing('2rem');
         }
 
         if (checked) {
             setChecked(false);
             setColoring('black');
-            setSizing('2rem');
+            // setSizing('2rem');
         }
     };
 
@@ -86,10 +86,10 @@ const ListItem = ({item, list, setList}) => {
 
     //add a <pre> tag around {item} if you want to preserve spaces
     return (
-        <div style={{display: 'grid', width: '100%', gridTemplateColumns: '60% 20% 20%', color: coloring, fontSize: sizing, marginBottom: '10px'}}>
-            <div style={{maxWidth: '100%'}}>{item.content}</div>
-            <button style={{color: 'white', backgroundColor: 'green', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
-            <button style={{color: 'white', backgroundColor: 'red', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
+        <div style={{display: 'grid', width: '100%', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, margin: '15px', fontSize: '1.5rem'}}>
+            <div style={{overflowWrap: 'break-word'}}>{item.content}</div>
+            <button style={{color: 'white', backgroundColor: 'green', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
+            <button style={{color: 'white', backgroundColor: 'red', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
         </div>
     );
 }
