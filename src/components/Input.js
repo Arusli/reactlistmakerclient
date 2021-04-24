@@ -25,8 +25,8 @@ const Input = () => {
     }, []); //if a blank array, this will only run once upon loading
 
 
-    const makeGetRequest = async () => {
-        await axios.get('http://localhost:3001/db')
+    const makeGetRequest = () => {
+        axios.get('http://localhost:3001/db')
         .then( res => {
             const array = [];
             const wordArray = [];
@@ -77,11 +77,11 @@ const Input = () => {
     // }
     
     //TEST NEW ONSUBMIT
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         if (term !== '') {
-            makePostRequest(term);
             event.preventDefault();
-            makeGetRequest();
+            await makePostRequest(term);
+            await makeGetRequest();
             setTerm(''); 
         }
         

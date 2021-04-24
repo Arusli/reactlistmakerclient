@@ -7,10 +7,12 @@ import Input from './Input';
 const App = () => {
     
     return (
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <h1 style={{marginBottom: '0px'}}>Listmaker</h1>
-            <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-            <Input />
+        <div style={{backgroundColor: 'beige', height: '98vh', margin: '0px', padding: '0px'}}>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
+                <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
+                <Input />
+            </div>
         </div>
     );
         
