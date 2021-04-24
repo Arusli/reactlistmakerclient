@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Input from './Input';
 // import Login from './Login';
 // import Logout from './Logout';
@@ -23,15 +23,27 @@ import { GoogleLogout } from 'react-google-login';
 
 const App = () => {
 
+    // for use with google log in
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userId, setUserId] = useState(0);
 
-    const responseGoogle = (response) => {
+
+    //response object returned from login call
+    const responseGoogle = async (response) => {
         console.log(response);
-        console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", window.gapi.auth2.getAuthInstance().isSignedIn.get())
+        console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", window.gapi.auth2.getAuthInstance().isSignedIn.get());
+        await setIsLoggedIn(true);
+        await setUserId(response.googleId);
+        console.log('user id: ', userId); //this is still doing the stale state problem...
     }
     
-    const logout = () => {
+    //called when logout completed
+    const logout = async () => {
         console.log('Logged Out.');
         console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", window.gapi.auth2.getAuthInstance().isSignedIn.get())
+        await setIsLoggedIn(false);
+        await setUserId(0);
+        console.log('user id: ', userId); //this is still doing the stale state problem...
     }
 
 
@@ -41,20 +53,31 @@ const App = () => {
                 <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
                 <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
                 <Input />
-                <GoogleLogin
-                clientId="610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com"
-                buttonText="Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-            />
-                <GoogleLogout
-                clientId="610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com"
-                buttonText="Logout"
-                onLogoutSuccess={logout}
-            >
-            </GoogleLogout>
+              
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <div style={{margin: '10px'}} >
+                    <GoogleLogin
+                    clientId="610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com"
+                    buttonText="Login"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                    isSignedIn={true}
+                    />
+                </div>
+                <div style={{margin: '10px'}} >
+                    <GoogleLogout
+                    clientId="610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com"
+                    buttonText="Logout"
+                    onLogoutSuccess={logout}
+                    >
+                    </GoogleLogout>
+                </div>                
+            </div>
+                    
+              
+                    
+                
             </div>
         </div>
     );
