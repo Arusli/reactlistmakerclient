@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import _ from 'lodash';
+// import _ from 'lodash';  //remove lodash from npm possibly?
 import axios from 'axios';
 
 const ListItem = ({item, list, setList}) => {
@@ -86,10 +86,10 @@ const ListItem = ({item, list, setList}) => {
 
     //add a <pre> tag around {item} if you want to preserve spaces
     return (
-        <div style={{color: coloring, fontSize: sizing, marginBottom: '10px', display: 'flex', justifyContent: 'left', alignItems: 'center'}}>
-            <button style={{color: 'black', marginRight: '8px', height: '2rem', width: '3rem', cursor: 'pointer'}} onClick={checkOff}>&#10003;</button>
-            {item.content}
-            <button style={{color: 'maroon', marginLeft: '8px', height: '2rem', width: '3rem', cursor: 'pointer'}} onClick={updateList} >X</button>
+        <div style={{display: 'grid', width: '100%', gridTemplateColumns: '60% 20% 20%', color: coloring, fontSize: sizing, marginBottom: '10px'}}>
+            <div style={{maxWidth: '100%'}}>{item.content}</div>
+            <button style={{color: 'white', backgroundColor: 'green', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
+            <button style={{color: 'white', backgroundColor: 'red', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
         </div>
     );
 }

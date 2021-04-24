@@ -14,11 +14,9 @@ const List = ({list, setList, makeGetRequest}) => {
         });
     
     return (
-        <div style={{textAlign: 'center'}}>
-            <div style={{margin: '40px', textAlign: 'left'}}>
+            <div style={{width: '40vw', margin: '40px', textAlign: 'left'}}>
                 {renderedList}
             </div>
-        </div>
     );
 }
 

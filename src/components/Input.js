@@ -6,22 +6,16 @@ const Input = () => {
     
     const [term, setTerm] = useState('');
     const [list, setList] = useState([]); 
-    const [termArray, setTermArray] = useState([]);
-    
+    // const [termArray, setTermArray] = useState([]); //use this for populating list without get requests, if needed.
+    // IF I WANT TO NOT MAKE AS MANY GET REQUESTS, I CAN POPULATE THE LIST WITH A TERM/WORD ARRAY.
+    //HOWEVER THIS RUNS THE PROBLEM OF NOT TRACKING SETTING ID'S FROM THE DATABASE ONTO THE NEW ITEMS.
+    //THIS MEANS WE CAN NO LONGER USE ID'S TO MAKE DELETE REQUESTS.
+    //WE COULD ASSIGN UUID'S TO EACH NEW ITEM I SUPPOSE... AND SAVE THAT ID INTO THE DATABSE AND USE THAT TO DELETE.
+    //THAT'S AN IDEA IF WE NEED TO DO IT.
+
+
     useEffect( () => {
-        axios.get('http://localhost:3001/db')
-        .then( res => {
-            const array = [];
-            const wordArray = [];
-            console.log(res.data);
-            res.data.forEach( (element) => {
-                array.push(element);
-                wordArray.push(element.content);
-            })
-            console.log(wordArray);
-            setList(array);
-            setTermArray(wordArray);
-        })
+        makeGetRequest();
     }, []); //if a blank array, this will only run once upon loading
 
 
@@ -29,14 +23,15 @@ const Input = () => {
         axios.get('http://localhost:3001/db')
         .then( res => {
             const array = [];
-            const wordArray = [];
+            // const wordArray = [];
+            console.log(res.data);
             res.data.forEach( (element) => {
                 array.push(element);
-                wordArray.push(element.content);
+                // wordArray.push(element.content);
             });
-            console.log(wordArray);
+            // console.log(wordArray);
             setList(array);
-            setTermArray(wordArray);
+            // setTermArray(wordArray);
         })
     };
     
@@ -80,7 +75,7 @@ const Input = () => {
     const onSubmit = async (event) => {
         if (term !== '') {
             event.preventDefault();
-            await makePostRequest(term);
+            await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
             await makeGetRequest();
             setTerm(''); 
         }
@@ -92,15 +87,16 @@ const Input = () => {
 
     return (
         <div>
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <form onSubmit={onSubmit}>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <input style={{textAlign: 'center', marginRight: '10px', minWidth: '300px', minHeight: '30px', fontSize: '1.5rem'}} type="text" value={term} onChange={event => setTerm(event.target.value)}></input>
                         <input style={{textAlign: 'center', height: '30px', width: '30px'}} type="submit" value="+"></input>
                     </div>
                 </form>
             </div>
-            <div>
+
+            <div style={{}}>
                 <List list={list} setList={setList} />
             </div>
         </div>
