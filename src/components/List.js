@@ -1,7 +1,7 @@
 import React from 'react';
 import ListItem from './ListItem';
 
-const List = ({list, setList}) => {
+const List = ({list, setList, makeGetRequest}) => {
 
     //also need keys/ids for items
     // How to generate keys: https://stackoverflow.com/questions/39549424/how-to-create-unique-keys-for-react-elements
@@ -9,7 +9,7 @@ const List = ({list, setList}) => {
     const renderedList = list.map(
         (item) => {
             return (
-                <ListItem item={item} list={list} setList={setList} /> //need key?
+                <ListItem item={item.content} list={list} setList={setList} key={item.id} /> //need key?
             );
         });
     

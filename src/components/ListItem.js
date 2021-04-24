@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import _ from 'lodash';
 import axios from 'axios';
 
@@ -25,8 +25,8 @@ const ListItem = ({item, list, setList}) => {
         }
     };
 
-    const makeDeleteRequest = (content) => {
-        axios.delete('http://localhost:3001/delete', {
+    const makeDeleteRequest = async (content) => {
+        await axios.delete('http://localhost:3001/delete', {
             data: {
                 content: content
             }
@@ -34,19 +34,57 @@ const ListItem = ({item, list, setList}) => {
         .then( res => {
             console.log(res.data);
         });
+
+        await axios.get('http://localhost:3001/db')
+        .then( res => {
+            const array = [];
+            res.data.forEach( (element) => {
+                array.push(element);
+            })
+            setList(array);
+        });
     };
 
-    const updateList = () => {
+    //TEST
+    // const makeGetRequest = async () => {
+    //     await axios.get('http://localhost:3001/db')
+    //     .then( res => {
+    //         const array = [];
+    //         res.data.forEach( (element) => {
+    //             array.push(element);
+    //         })
+    //         setList(array);
+            
+    //     })
+    // };
+
+    // const updateList = () => {
+    //     console.log('item:',item);
+    //     makeDeleteRequest(item);
+    //     const ar = []; //I did this to trick setList to rerender instantly.
+    //     list.forEach( (element) => {
+    //         ar.push(element.content);
+    //     })
+    //     setList(_.pull(ar, item));
+    //     // setList(['test one', 'test two']);
+    // };
+
+    //UPDATE LIST TEST
+     const updateList = async () => {
         console.log('item:',item);
-        makeDeleteRequest(item);
-        const ar = [...list]; //I did this to trick setList to rerender instantly.
-        setList(_.pull(ar, item));
-        // setList(['test one', 'test two']);
+        await makeDeleteRequest(item);
+        // axios.get('http://localhost:3001/db')
+        // .then( res => {
+        //     const array = [];
+        //     res.data.forEach( (element) => {
+        //         array.push(element);
+        //     })
+        //     setList(array);
+        // });
     };
+    
 
-  
-
-
+    //add a <pre> tag around {item} if you want to preserve spaces
     return (
         <div style={{color: coloring, fontSize: sizing, marginBottom: '10px', display: 'flex', justifyContent: 'left', alignItems: 'center'}}>
             <button style={{color: 'black', marginRight: '8px', height: '2rem', width: '3rem', cursor: 'pointer'}} onClick={checkOff}>&#10003;</button>

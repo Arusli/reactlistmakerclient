@@ -6,19 +6,39 @@ const Input = () => {
     
     const [term, setTerm] = useState('');
     const [list, setList] = useState([]); 
+    const [termArray, setTermArray] = useState([]);
     
     useEffect( () => {
         axios.get('http://localhost:3001/db')
         .then( res => {
             const array = [];
+            const wordArray = [];
+            console.log(res.data);
             res.data.forEach( (element) => {
-                array.push(element.content);
+                array.push(element);
+                wordArray.push(element.content);
             })
-            console.log(array);
+            console.log(wordArray);
             setList(array);
+            setTermArray(wordArray);
         })
     }, []); //if a blank array, this will only run once upon loading
 
+
+    const makeGetRequest = async () => {
+        await axios.get('http://localhost:3001/db')
+        .then( res => {
+            const array = [];
+            const wordArray = [];
+            res.data.forEach( (element) => {
+                array.push(element);
+                wordArray.push(element.content);
+            });
+            console.log(wordArray);
+            setList(array);
+            setTermArray(wordArray);
+        })
+    };
     
     const makePostRequest = async (content) => {
         //need a function that produces a data object {content: someting} to pass into post method.?
@@ -39,26 +59,36 @@ const Input = () => {
 
 
     //need a post function here
+    // const onSubmit = (event) => {
+    //     if (term !== '' && !list.includes(term.trim())) {
+    //         makePostRequest(term.trim());
+    //         const array = [...list, term.trim()];
+    //         event.preventDefault();
+    //         setList(array); //possibly need to make this an object with properties {term: term, id: uuid}. //is this a "STALE CLOSURE PROBLEM?"
+    //         // setList(['hamster', 'gerbil']);
+    //         console.log(term);
+    //         setTimeout(() => console.log(list), 2000); //is this a "STALE CLOSURE PROBLEM?"
+    //         setTerm(''); 
+    //     }
+        
+    //     if (term === '' || list.includes(term.trim())) {
+    //         event.preventDefault();
+    //     }
+    // }
+    
+    //TEST NEW ONSUBMIT
     const onSubmit = (event) => {
-        if (term !== '' && !list.includes(term.trim())) {
+        if (term !== '' && !termArray.includes(term.trim())) {
             makePostRequest(term.trim());
-            const array = [...list, term.trim()];
             event.preventDefault();
-            setList(array); //possibly need to make this an object with properties {term: term, id: uuid}. //is this a "STALE CLOSURE PROBLEM?"
-            // setList(['hamster', 'gerbil']);
-            console.log(term);
-            setTimeout(() => console.log(list), 2000); //is this a "STALE CLOSURE PROBLEM?"
+            makeGetRequest();
             setTerm(''); 
         }
         
-        if (term === '' || list.includes(term.trim())) {
+        if (term === '' || termArray.includes(term.trim())) {
             event.preventDefault();
         }
     }
-    
-    // useEffect( () => {
-    //     console.log(list)
-    // }, [list]);
 
     return (
         <div>
