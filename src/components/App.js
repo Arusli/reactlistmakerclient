@@ -23,7 +23,7 @@ import { GoogleLogout } from 'react-google-login';
 
 const App = () => {
 
-    // for use with google log in
+    // for use with google log in. pass down as props throughout the app.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState(0);
 
