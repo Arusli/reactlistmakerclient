@@ -8,10 +8,6 @@ import { GoogleLogin } from 'react-google-login';
 
 const Login = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
-    // const responseGoogle = (response) => {
-    //     console.log(response);
-    //   }
-    
     const responseGoogle = async (response) => {
         console.log(response);
         console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", window.gapi.auth2.getAuthInstance().isSignedIn.get());

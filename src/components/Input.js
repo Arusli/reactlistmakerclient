@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import List from './List';
 import axios from 'axios';
 
-const Input = () => {
+const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
     
     const [term, setTerm] = useState('');
     const [list, setList] = useState([]); 
@@ -19,8 +19,13 @@ const Input = () => {
     }, []); //if a blank array, this will only run once upon loading
 
 
+    //i need to pass some params/body to this request, re: userId.***
     const makeGetRequest = () => {
-        axios.get('http://localhost:3001/db')
+        axios.get('http://localhost:3001/db', {
+            params: {
+                userId: userId
+            }
+        })
         .then( res => {
             const array = [];
             // const wordArray = [];

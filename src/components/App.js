@@ -25,7 +25,7 @@ const App = () => {
 
     // for use with google log in. pass down as props throughout the app.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userId, setUserId] = useState(0);
+    const [userId, setUserId] = useState('0');
 
     return (
         <div style={{backgroundColor: 'beige', height: '98vh', margin: '20px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
@@ -52,8 +52,13 @@ const App = () => {
 
                 <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
                 <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-                <Input />    
-                            
+                <Input 
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    userId={userId}
+                    setUserId={setUserId}
+                />    
+
             </div>
         </div>
     );
