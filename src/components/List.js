@@ -1,15 +1,25 @@
 import React from 'react';
 import ListItem from './ListItem';
 
-const List = ({list, setList, makeGetRequest}) => {
+const List = ({list, setList, makeGetRequest, isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
-    //also need keys/ids for items
-    // How to generate keys: https://stackoverflow.com/questions/39549424/how-to-create-unique-keys-for-react-elements
 
+    //the item here is a list item object returned from the get request.
+    //contains properties {id, content, and user_id} from sql
     const renderedList = list.map(
         (item) => {
+            console.log('userId value in List component', userId);
             return (
-                <ListItem item={item} list={list} setList={setList} key={item.id} /> //need key?
+                <ListItem 
+                    item={item} 
+                    list={list} 
+                    setList={setList} 
+                    key={item.id} 
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    userId={userId}
+                    setUserId={setUserId}  
+                /> //need key?
             );
         });
     

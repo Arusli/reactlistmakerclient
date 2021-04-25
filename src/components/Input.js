@@ -21,6 +21,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
     //i need to pass some params/body to this request, re: userId.***
     const makeGetRequest = () => {
+        console.log('makeGetRequest called');
         axios.get('http://localhost:3001/db', {
             params: {
                 userId: userId
@@ -43,7 +44,8 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
     const makePostRequest = async (content) => {
         //need a function that produces a data object {content: someting} to pass into post method.?
         await axios.post('http://localhost:3001/post', {
-            content: content
+            content: content,
+            userId: userId
         })
         .then( res => {
             console.log(res.data);
@@ -83,6 +85,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
             await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
             await makeGetRequest();
             setTerm(''); 
+            console.log('user id', userId);
         }
         
         if (term === '') {
@@ -102,7 +105,14 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
             </div>
 
             <div style={{}}>
-                <List list={list} setList={setList} />
+                <List 
+                    list={list} 
+                    setList={setList} 
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    userId={userId}
+                    setUserId={setUserId}  
+                />
             </div>
         </div>
     );

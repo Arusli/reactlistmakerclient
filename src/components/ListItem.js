@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 // import _ from 'lodash';  //remove lodash from npm possibly?
 import axios from 'axios';
 
-const ListItem = ({item, list, setList}) => {
+const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
     //styling states
     const [coloring, setColoring] = useState('black');
@@ -26,16 +26,22 @@ const ListItem = ({item, list, setList}) => {
     };
 
     const makeDeleteRequest = async (item) => {
+        console.log('userId value in ListItem Component', userId);
         await axios.delete('http://localhost:3001/delete', {
             data: {
-                id: item.id
+                id: item.id,
+                userId: userId
             }
         })
         .then( res => {
             console.log(res.data);
         });
 
-        await axios.get('http://localhost:3001/db')
+        await axios.get('http://localhost:3001/db', {
+            params: {
+                userId: userId
+            }
+        })
         .then( res => {
             const array = [];
             res.data.forEach( (element) => {
