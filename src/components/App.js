@@ -2,11 +2,7 @@ import React, {useState} from 'react';
 import Input from './Input';
 import Login from './Login';
 import Logout from './Logout';
-// import { GoogleLogin } from 'react-google-login';
-// import { GoogleLogout } from 'react-google-login';
 
-//an advanced version of this app could take a google sign in
-//and save/remember individuals lists in the database.
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
@@ -26,6 +22,8 @@ const App = () => {
     // for use with google log in. pass down as props throughout the app.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState('0');
+
+    //NEED TO LOG IN HERE FIRST, USE EFFECT HERE FIRST, THEN PASS THAT INFORMATION DOWN TO THE LOGIN COMPONENT...
 
     return (
         <div style={{backgroundColor: 'beige', height: '98vh', margin: '20px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>

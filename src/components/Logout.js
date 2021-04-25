@@ -9,6 +9,7 @@ const Logout = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
         await setIsLoggedIn(false);
         await setUserId(0);
         console.log('user id: ', userId); //this is still doing the stale state problem...
+        //needs to make another get request that repopulates the screen...
     }
 
     return (

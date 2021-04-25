@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import List from './List';
 import axios from 'axios';
 
@@ -6,6 +6,10 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
     
     const [term, setTerm] = useState('');
     const [list, setList] = useState([]); 
+
+    const userIdRef = useRef('0');
+    userIdRef.current = userId;
+
     // const [termArray, setTermArray] = useState([]); //use this for populating list without get requests, if needed.
     // IF I WANT TO NOT MAKE AS MANY GET REQUESTS, I CAN POPULATE THE LIST WITH A TERM/WORD ARRAY.
     //HOWEVER THIS RUNS THE PROBLEM OF NOT TRACKING SETTING ID'S FROM THE DATABASE ONTO THE NEW ITEMS.
@@ -20,11 +24,16 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
 
     //i need to pass some params/body to this request, re: userId.***
+    //i think i need to move this function to App.js... along with axios. and make get requests from axios.
+    //and also pass this function around as a prop that can be called by other components when needed.
     const makeGetRequest = () => {
         console.log('makeGetRequest called');
+        console.log('get request userId', userId);
+        console.log('get request userIdRef', userIdRef.current);
         axios.get('http://localhost:3001/db', {
             params: {
-                userId: userId
+                // userId: userId
+                userId: userIdRef.current
             }
         })
         .then( res => {
@@ -45,7 +54,8 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
         //need a function that produces a data object {content: someting} to pass into post method.?
         await axios.post('http://localhost:3001/post', {
             content: content,
-            userId: userId
+            // userId: userId
+            userId: userIdRef.current
         })
         .then( res => {
             console.log(res.data);
@@ -86,6 +96,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
             await makeGetRequest();
             setTerm(''); 
             console.log('user id', userId);
+            console.log('user id ref', userIdRef.current)
         }
         
         if (term === '') {
