@@ -1,10 +1,14 @@
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
 
-const Logout = () => {
+const Logout = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
-    const logout = () => {
+    const logout = async () => {
         console.log('Logged Out.');
+        console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", window.gapi.auth2.getAuthInstance().isSignedIn.get())
+        await setIsLoggedIn(false);
+        await setUserId(0);
+        console.log('user id: ', userId); //this is still doing the stale state problem...
     }
 
     return (
