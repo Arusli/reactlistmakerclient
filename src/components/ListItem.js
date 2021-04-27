@@ -6,7 +6,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
     console.log('ListItem Component Renders');
     //styling states
-    const [coloring, setColoring] = useState('purple');
+    const [coloring, setColoring] = useState('#000066');
     // const [sizing, setSizing] = useState('2rem');
     const [checked, setChecked] = useState(false);
 
@@ -21,7 +21,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
         if (checked) {
             setChecked(false);
-            setColoring('purple');
+            setColoring('#000066');
             // setSizing('2rem');
         }
     };
@@ -40,8 +40,8 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     return (
         <div style={{display: 'grid', width: '100%', height: '100%', padding: '10px 10px', borderRadius: '5px', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, backgroundColor: 'white', margin: '5px', fontSize: '1.5rem', fontWeight: 'bold'}}>
             <div style={{overflowWrap: 'break-word'}}>{item.content}</div>
-            <button style={{color: 'white', backgroundColor: 'black', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
-            <button style={{color: 'white', backgroundColor: 'red', fontWeight: 'bold', height: '2.5rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
+            <button style={{color: 'white', backgroundColor: '#0080ff', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
+            <button style={{color: 'white', backgroundColor: '#FF3333', fontWeight: 'bold', height: '2.5rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
         </div>
     );
 }

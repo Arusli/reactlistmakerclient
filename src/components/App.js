@@ -108,7 +108,7 @@ const App = () => {
         <div style={{margin: '0 0 50px 0', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '50vw'}}>
            
-                <div style={{width: '100vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'purple'}}>
+                <div style={{width: '100vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#4C0099'}}>
                     {isLoggedIn ? (<div style={{color: 'white', fontWeight: 'bold'}}>Welcome, {userName}.</div>) : null }
                     {isLoggedIn ? null : (<div style={{margin:'10px 30px'}}>
                         <Login 
