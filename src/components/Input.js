@@ -3,6 +3,8 @@ import List from './List';
 import axios from 'axios';
 
 const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
+
+    console.log('Input Component Renders');
     
     const [term, setTerm] = useState('');
     const [list, setList] = useState([]); 
@@ -19,8 +21,9 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
 
     useEffect( () => {
+        console.log('input useEffect renders');
         makeGetRequest();
-    }, []); //if a blank array, this will only run once upon loading
+    }, [userId]); //if a blank array, this will only run once upon loading
 
 
     //i need to pass some params/body to this request, re: userId.***
@@ -39,7 +42,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
         .then( res => {
             const array = [];
             // const wordArray = [];
-            console.log(res.data);
+            console.log('get request response: ', res.data);
             res.data.forEach( (element) => {
                 array.push(element);
                 // wordArray.push(element.content);

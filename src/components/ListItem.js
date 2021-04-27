@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
+    console.log('ListItem Component Renders');
     //styling states
     const [coloring, setColoring] = useState('black');
     // const [sizing, setSizing] = useState('2rem');
@@ -25,6 +26,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
         }
     };
 
+    //THIS SHOULD BE PROP, FROM HIGHER LEVEL?
     const makeDeleteRequest = async (item) => {
         console.log('userId value in ListItem Component', userId);
         await axios.delete('http://localhost:3001/delete', {

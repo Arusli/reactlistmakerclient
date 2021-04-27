@@ -7,16 +7,17 @@ import { GoogleLogin } from 'react-google-login';
 //console code to check if user is signed in: gapi.auth2.getAuthInstance().isSignedIn.get()
 
 const Login = ({isLoggedIn, setIsLoggedIn, userId, setUserId, setUserIdRef}) => {
+    console.log('Login Component Renders');
 
     const userIdRef = useRef('0');
     userIdRef.current = userId;
 
-    const responseGoogle = async (response) => {
+    const responseGoogle = (response) => {
         console.log(response);
         console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", window.gapi.auth2.getAuthInstance().isSignedIn.get());
-        await setIsLoggedIn(true);
-        await setUserId(response.googleId);
-        console.log('user id: ', userId);
+        setIsLoggedIn(true);
+        setUserId(response.googleId);
+        console.log('user id: ', userId); //stale state problem here
         console.log('user id ref: ', userIdRef.current) //this is still doing the stale state problem...
         //after this logs in we need to make the Get Request and populate hte screen.
         
