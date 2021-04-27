@@ -6,9 +6,10 @@ import Logout from './Logout';
 
 
 //MAIN PROBLEMS:
-// 1. Solved list rendering on load problem, via useEffect [userId].
-// 2. Need to conditionally render list/input based on isLoggedIn State.
-// 3. How to style login/logout component/buttons.
+// 1. SOLVED - list rendering on load problem, via useEffect [userId].
+// 2. SOLVED - Need to conditionally render list/input based on isLoggedIn State.
+// 3. SOLVED - How to style login/logout component/buttons.
+// 4. Css formatting to look good, be responsive, and account for long term values.
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
@@ -104,11 +105,12 @@ const App = () => {
 
 
     return (
-        <div style={{backgroundColor: 'beige', height: '98vh', margin: '20px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
+        <div style={{backgroundColor: 'beige', margin: '20px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '50vw'}}>
            
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <div style={{margin:'10px'}}>
+                <div style={{width: '90vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'pink'}}>
+                    {isLoggedIn ? (<div style={{marginRight: '20px'}}>Welcome, {userName}.</div>) : null }
+                    {isLoggedIn ? null : (<div style={{margin:'10px'}}>
                         <Login 
                             isLoggedIn={isLoggedIn}
                             setIsLoggedIn={setIsLoggedIn}
@@ -116,8 +118,8 @@ const App = () => {
                             setUserId={setUserId}
                             setUserName={setUserName}
                         />
-                    </div>
-                    <div style={{margin:'10px'}}>
+                    </div>)}
+                    {isLoggedIn ? (<div style={{margin:'10px'}}>
                         <Logout 
                             isLoggedIn={isLoggedIn}
                             setIsLoggedIn={setIsLoggedIn}
@@ -125,15 +127,12 @@ const App = () => {
                             setUserId={setUserId}
                             setUserName={setUserName}
                         />
-                    </div>
+                    </div>) : null}
                 </div>
-
-                {isLoggedIn ? (<div>{userName} is logged in.</div>) : (<div style={{color: 'purple', fontSize: '1.5rem'}}>Please Log In</div>)}
-                
 
                 <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
                 <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-                
+                {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontStyle: 'bold'}}>Please Log In.</div>)}
                 
                 {isLoggedIn ? (<Input 
                     isLoggedIn={isLoggedIn}
