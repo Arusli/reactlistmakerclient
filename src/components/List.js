@@ -26,7 +26,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
         });
     
     return (
-            <div style={{width: '40vw', maxWidth: '400px', margin: '40px', textAlign: 'left'}}>
+            <div style={{width: '50vw', maxWidth: '500px', margin: '40px', textAlign: 'left'}}>
                 {renderedList}
             </div>
     );

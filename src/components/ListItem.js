@@ -6,7 +6,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
     console.log('ListItem Component Renders');
     //styling states
-    const [coloring, setColoring] = useState('black');
+    const [coloring, setColoring] = useState('white');
     // const [sizing, setSizing] = useState('2rem');
     const [checked, setChecked] = useState(false);
 
@@ -15,13 +15,13 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
         if (!checked) {
             setChecked(true);
-            setColoring('lightgrey');
+            setColoring('grey');
             // setSizing('2rem');
         }
 
         if (checked) {
             setChecked(false);
-            setColoring('black');
+            setColoring('white');
             // setSizing('2rem');
         }
     };
@@ -38,10 +38,10 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
     //add a <pre> tag around {item} if you want to preserve spaces
     return (
-        <div style={{display: 'grid', width: '100%', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, margin: '15px', fontSize: '1.5rem'}}>
+        <div style={{display: 'grid', width: '100%', height: '100%', padding: '0 10px', borderRadius: '5px', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, backgroundColor: 'blue', margin: '15px', fontSize: '1.5rem'}}>
             <div style={{overflowWrap: 'break-word'}}>{item.content}</div>
-            <button style={{color: 'white', backgroundColor: 'green', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
-            <button style={{color: 'white', backgroundColor: 'red', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
+            <button style={{color: 'white', backgroundColor: 'lime', fontWeight: 'bold', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
+            <button style={{color: 'white', backgroundColor: 'red', fontWeight: 'bold', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
         </div>
     );
 }

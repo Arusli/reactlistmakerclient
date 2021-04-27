@@ -105,11 +105,11 @@ const App = () => {
 
 
     return (
-        <div style={{backgroundColor: 'beige', margin: '20px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
+        <div style={{margin: '0px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '50vw'}}>
            
-                <div style={{width: '90vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'pink'}}>
-                    {isLoggedIn ? (<div style={{marginRight: '20px'}}>Welcome, {userName}.</div>) : null }
+                <div style={{width: '100vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'purple'}}>
+                    {isLoggedIn ? (<div style={{marginRight: '20px', color: 'white', fontWeight: 'bold'}}>Welcome, {userName}.</div>) : null }
                     {isLoggedIn ? null : (<div style={{margin:'10px'}}>
                         <Login 
                             isLoggedIn={isLoggedIn}
@@ -132,7 +132,7 @@ const App = () => {
 
                 <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
                 <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-                {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontStyle: 'bold'}}>Please Log In.</div>)}
+                {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
                 {isLoggedIn ? (<Input 
                     isLoggedIn={isLoggedIn}

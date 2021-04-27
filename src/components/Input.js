@@ -62,7 +62,7 @@ const Input = (
                 <form onSubmit={onSubmit}>
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <input style={{textAlign: 'center', marginRight: '10px', minWidth: '300px', minHeight: '2.2rem', fontSize: '1.2rem'}} type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)}></input>
-                        <input style={{textAlign: 'center', height: '2.2rem', width: '3rem', color: 'white', backgroundColor: 'black', borderRadius: '5px', borderStyle: 'none', fontSize: '1.5rem'}} type="submit" value="+"></input>
+                        <input style={{textAlign: 'center', height: '2.2rem', width: '3rem', color: 'white', backgroundColor: 'purple', borderRadius: '5px', borderStyle: 'none', fontSize: '1.5rem'}} type="submit" value="+"></input>
                     </div>
                 </form>
             </div>
