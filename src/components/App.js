@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import Input from './Input';
 import Login from './Login';
@@ -6,10 +6,9 @@ import Logout from './Logout';
 
 
 //MAIN PROBLEMS:
-//Right now, there is no get request call triggered when I do a google login.
-//which is why the list items, based on the list prop that is filled by a get request, do not update on the screen.
-//Therefore, I either need Login to trigger a get request OR
-//OR I need a get request to be called whenever user Id changes.
+// 1. Solved list rendering on load problem, via useEffect [userId].
+// 2. Need to conditionally render list/input based on isLoggedIn State.
+// 3. How to style login/logout component/buttons.
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
@@ -24,6 +23,8 @@ import Logout from './Logout';
 //O AUTH
 // CLIENT ID 610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com
 
+const url = 'http://localhost:3001'
+
 const App = () => {
     
     console.log('App Component Renders');
@@ -34,9 +35,88 @@ const App = () => {
 
 
 
+    //MOVING IN THIS LOGIC FROM INPUT COMPONENT TO HERE
+    const [list, setList] = useState([]); 
+
+    const userIdRef = useRef('0');
+    userIdRef.current = userId;
+
+
+    //USE EFFECT RERENDERS APP WHENEVER USER ID CHANGES. THIS REDISPLAYS UPDATED LIST ITEMS.
+    useEffect( () => {
+        console.log('input useEffect renders');
+        makeGetRequest();
+    }, [userId]); //if a blank array, this will only run once upon loading
+
+
+    //(can i extract these requests/import them from another file somehow?)
+    //GET REQUEST
+    const makeGetRequest = () => {
+        console.log('makeGetRequest called');
+        console.log('get request userId', userId);
+        console.log('get request userIdRef', userIdRef.current);
+        axios.get(`${url}/db`, {
+            params: {
+                userId: userId
+                // userId: userIdRef.current
+            }
+        })
+        .then( res => {
+            const array = [];
+            // const wordArray = [];
+            console.log('get request response: ', res.data);
+            res.data.forEach( (element) => {
+                array.push(element);
+                // wordArray.push(element.content);
+            });
+            // console.log(wordArray);
+            setList(array);
+            // setTermArray(wordArray);
+        })
+    };
     
 
-    //NEED TO LOG IN HERE FIRST, USE EFFECT HERE FIRST, THEN PASS THAT INFORMATION DOWN TO THE LOGIN COMPONENT...
+    //POST REQUEST
+    const makePostRequest = async (content) => {
+        await axios.post(`${url}/post`, {
+            content: content,
+            userId: userId
+            // userId: userIdRef.current
+        })
+        .then( res => {
+            console.log(res.data);
+        });
+    };
+
+
+    //DELETE REQUEST
+    const makeDeleteRequest = async (item) => {
+        console.log('userId value in ListItem Component', userId);
+        await axios.delete(`${url}/delete`, {
+            data: {
+                id: item.id,
+                userId: userId
+            }
+        })
+        .then( res => {
+            console.log(res.data);
+        });
+
+        makeGetRequest();
+        // await axios.get(`${url}/db`, {
+        //     params: {
+        //         userId: userId
+        //     }
+        // })
+        // .then( res => {
+        //     const array = [];
+        //     res.data.forEach( (element) => {
+        //         array.push(element);
+        //     })
+        //     setList(array);
+        // });
+    };
+
 
     return (
         <div style={{backgroundColor: 'beige', height: '98vh', margin: '20px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
@@ -68,6 +148,11 @@ const App = () => {
                     setIsLoggedIn={setIsLoggedIn}
                     userId={userId}
                     setUserId={setUserId}
+                    makeGetRequest={makeGetRequest}
+                    makePostRequest={makePostRequest}
+                    makeDeleteRequest={makeDeleteRequest}
+                    setList={setList}
+                    list={list}
                 />    
 
             </div>

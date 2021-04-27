@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 // import _ from 'lodash';  //remove lodash from npm possibly?
-import axios from 'axios';
 
-const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
+
+const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
 
     console.log('ListItem Component Renders');
     //styling states
@@ -26,69 +26,13 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
         }
     };
 
-    //THIS SHOULD BE PROP, FROM HIGHER LEVEL?
-    const makeDeleteRequest = async (item) => {
-        console.log('userId value in ListItem Component', userId);
-        await axios.delete('http://localhost:3001/delete', {
-            data: {
-                id: item.id,
-                userId: userId
-            }
-        })
-        .then( res => {
-            console.log(res.data);
-        });
+    //passed in makeDeleteRequest as an prop from App.
 
-        await axios.get('http://localhost:3001/db', {
-            params: {
-                userId: userId
-            }
-        })
-        .then( res => {
-            const array = [];
-            res.data.forEach( (element) => {
-                array.push(element);
-            })
-            setList(array);
-        });
-    };
-
-    //TEST
-    // const makeGetRequest = async () => {
-    //     await axios.get('http://localhost:3001/db')
-    //     .then( res => {
-    //         const array = [];
-    //         res.data.forEach( (element) => {
-    //             array.push(element);
-    //         })
-    //         setList(array);
-            
-    //     })
-    // };
-
-    // const updateList = () => {
-    //     console.log('item:',item);
-    //     makeDeleteRequest(item);
-    //     const ar = []; //I did this to trick setList to rerender instantly.
-    //     list.forEach( (element) => {
-    //         ar.push(element.content);
-    //     })
-    //     setList(_.pull(ar, item));
-    //     // setList(['test one', 'test two']);
-    // };
 
     //UPDATE LIST TEST
      const updateList = async () => {
         console.log('item:',item);
         await makeDeleteRequest(item);
-        // axios.get('http://localhost:3001/db')
-        // .then( res => {
-        //     const array = [];
-        //     res.data.forEach( (element) => {
-        //         array.push(element);
-        //     })
-        //     setList(array);
-        // });
     };
     
 

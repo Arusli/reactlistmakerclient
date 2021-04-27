@@ -1,16 +1,23 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 import List from './List';
-import axios from 'axios';
 
-const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
+const Input = (
+    {isLoggedIn, 
+    setIsLoggedIn, 
+    userId, 
+    setUserId, 
+    makeGetRequest, 
+    makePostRequest, 
+    makeDeleteRequest,
+    list, 
+    setList
+    }) => {
 
     console.log('Input Component Renders');
     
     const [term, setTerm] = useState('');
-    const [list, setList] = useState([]); 
+    // const [list, setList] = useState([]); 
 
-    const userIdRef = useRef('0');
-    userIdRef.current = userId;
 
     // const [termArray, setTermArray] = useState([]); //use this for populating list without get requests, if needed.
     // IF I WANT TO NOT MAKE AS MANY GET REQUESTS, I CAN POPULATE THE LIST WITH A TERM/WORD ARRAY.
@@ -20,52 +27,10 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
     //THAT'S AN IDEA IF WE NEED TO DO IT.
 
 
-    useEffect( () => {
-        console.log('input useEffect renders');
-        makeGetRequest();
-    }, [userId]); //if a blank array, this will only run once upon loading
+    //MOVED GET REQUEST AND POST REQUEST TO APP COMPONENT
 
 
-    //i need to pass some params/body to this request, re: userId.***
-    //i think i need to move this function to App.js... along with axios. and make get requests from axios.
-    //and also pass this function around as a prop that can be called by other components when needed.
-    const makeGetRequest = () => {
-        console.log('makeGetRequest called');
-        console.log('get request userId', userId);
-        console.log('get request userIdRef', userIdRef.current);
-        axios.get('http://localhost:3001/db', {
-            params: {
-                // userId: userId
-                userId: userIdRef.current
-            }
-        })
-        .then( res => {
-            const array = [];
-            // const wordArray = [];
-            console.log('get request response: ', res.data);
-            res.data.forEach( (element) => {
-                array.push(element);
-                // wordArray.push(element.content);
-            });
-            // console.log(wordArray);
-            setList(array);
-            // setTermArray(wordArray);
-        })
-    };
     
-    const makePostRequest = async (content) => {
-        //need a function that produces a data object {content: someting} to pass into post method.?
-        await axios.post('http://localhost:3001/post', {
-            content: content,
-            // userId: userId
-            userId: userIdRef.current
-        })
-        .then( res => {
-            console.log(res.data);
-        });
-    };
-    
-
     //why doesn't setList update immediately? https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
     //https://reactjs.org/docs/hooks-effect.html
     //https://linguinecode.com/post/why-react-setstate-usestate-does-not-update-immediately
@@ -73,23 +38,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
     //STALE PROPS: https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
 
 
-    //need a post function here
-    // const onSubmit = (event) => {
-    //     if (term !== '' && !list.includes(term.trim())) {
-    //         makePostRequest(term.trim());
-    //         const array = [...list, term.trim()];
-    //         event.preventDefault();
-    //         setList(array); //possibly need to make this an object with properties {term: term, id: uuid}. //is this a "STALE CLOSURE PROBLEM?"
-    //         // setList(['hamster', 'gerbil']);
-    //         console.log(term);
-    //         setTimeout(() => console.log(list), 2000); //is this a "STALE CLOSURE PROBLEM?"
-    //         setTerm(''); 
-    //     }
-        
-    //     if (term === '' || list.includes(term.trim())) {
-    //         event.preventDefault();
-    //     }
-    // }
+
     
     //TEST NEW ONSUBMIT
     const onSubmit = async (event) => {
@@ -99,7 +48,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
             await makeGetRequest();
             setTerm(''); 
             console.log('user id', userId);
-            console.log('user id ref', userIdRef.current)
+            // console.log('user id ref', userIdRef.current)
         }
         
         if (term === '') {
@@ -126,6 +75,7 @@ const Input = ({isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
                     setIsLoggedIn={setIsLoggedIn}
                     userId={userId}
                     setUserId={setUserId}  
+                    makeDeleteRequest={makeDeleteRequest}
                 />
             </div>
         </div>
