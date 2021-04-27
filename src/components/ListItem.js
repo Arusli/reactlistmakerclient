@@ -38,10 +38,10 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
     //add a <pre> tag around {item} if you want to preserve spaces
     return (
-        <div style={{display: 'grid', width: '100%', height: '100%', padding: '0 10px', borderRadius: '5px', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, backgroundColor: 'blue', margin: '15px', fontSize: '1.5rem'}}>
+        <div style={{display: 'grid', width: '100%', height: '100%', padding: '10px 10px', borderRadius: '5px', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, backgroundColor: 'aqua', margin: '5px', fontSize: '1.5rem'}}>
             <div style={{overflowWrap: 'break-word'}}>{item.content}</div>
-            <button style={{color: 'white', backgroundColor: 'lime', fontWeight: 'bold', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
-            <button style={{color: 'white', backgroundColor: 'red', fontWeight: 'bold', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
+            <button style={{color: 'white', backgroundColor: 'black', fontWeight: 'bold', height: '2.2rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
+            <button style={{color: 'white', backgroundColor: 'red', fontWeight: 'bold', height: '2.2rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
         </div>
     );
 }

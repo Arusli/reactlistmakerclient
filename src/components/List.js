@@ -11,7 +11,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
         (item) => {
             console.log('userId value in List component', userId); //HERE'S THE PROBLEM: WHEN USER LOGS IN, THIS USER ID IS NOT UPDATED YET, AND GETS PASSED TO LIST ITEM.
             return (
-                <ListItem 
+                    <ListItem 
                     item={item} 
                     list={list} 
                     setList={setList} 
@@ -21,12 +21,23 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
                     userId={userId}
                     setUserId={setUserId}
                     makeDeleteRequest={makeDeleteRequest}  
-                /> //need key?
+                />
+                
             );
         });
     
     return (
-            <div style={{width: '50vw', maxWidth: '500px', margin: '40px', textAlign: 'left'}}>
+            <div style={{
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    width: '50vw', 
+                    maxWidth: '500px', 
+                    minWidth: '350px', 
+                    margin: '40px', 
+                    textAlign: 'left'
+                }}>
                 {renderedList}
             </div>
     );

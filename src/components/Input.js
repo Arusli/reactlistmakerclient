@@ -58,16 +58,16 @@ const Input = (
 
     return (
         <div>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', border: '2px solid white'}}>
                 <form onSubmit={onSubmit}>
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <input style={{textAlign: 'center', marginRight: '10px', minWidth: '300px', minHeight: '2.2rem', fontSize: '1.2rem'}} type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)}></input>
-                        <input style={{textAlign: 'center', height: '2.2rem', width: '3rem', color: 'white', backgroundColor: 'purple', borderRadius: '5px', borderStyle: 'none', fontSize: '1.5rem'}} type="submit" value="+"></input>
+                        <input style={{textAlign: 'center', width: '300px', height: '2.5rem', fontSize: '1.2rem'}} type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)}></input>
+                        <input style={{textAlign: 'center', margin: '0 0 0 10px', height: '2.5rem', width: '2.5rem', color: 'white', backgroundColor: 'purple', borderRadius: '5px', borderStyle: 'none', fontSize: '1.5rem'}} type="submit" value="+"></input>
                     </div>
                 </form>
             </div>
 
-            <div style={{}}>
+            <div style={{border: 'solid 2px white'}}>
                 <List 
                     list={list} 
                     setList={setList} 
