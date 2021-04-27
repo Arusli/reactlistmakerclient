@@ -105,12 +105,12 @@ const App = () => {
 
 
     return (
-        <div style={{margin: '0px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
+        <div style={{margin: '0 0 50px 0', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '50vw'}}>
            
                 <div style={{width: '100vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'purple'}}>
-                    {isLoggedIn ? (<div style={{marginRight: '20px', color: 'white', fontWeight: 'bold'}}>Welcome, {userName}.</div>) : null }
-                    {isLoggedIn ? null : (<div style={{margin:'10px'}}>
+                    {isLoggedIn ? (<div style={{color: 'white', fontWeight: 'bold'}}>Welcome, {userName}.</div>) : null }
+                    {isLoggedIn ? null : (<div style={{margin:'10px 30px'}}>
                         <Login 
                             isLoggedIn={isLoggedIn}
                             setIsLoggedIn={setIsLoggedIn}
@@ -119,7 +119,7 @@ const App = () => {
                             setUserName={setUserName}
                         />
                     </div>)}
-                    {isLoggedIn ? (<div style={{margin:'10px'}}>
+                    {isLoggedIn ? (<div style={{margin:'10px 30px'}}>
                         <Logout 
                             isLoggedIn={isLoggedIn}
                             setIsLoggedIn={setIsLoggedIn}
@@ -130,6 +130,7 @@ const App = () => {
                     </div>) : null}
                 </div>
 
+                {/* add in a container here for styling/background */}
                 <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
                 <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
                 {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontWeight: 'bold'}}>Please Log In.</div>)}
