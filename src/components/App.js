@@ -19,10 +19,6 @@ import Logout from './Logout';
 //https://dev.to/sivaneshs/add-google-login-to-your-react-apps-in-10-mins-4del
 
 
-
-//O AUTH
-// CLIENT ID 610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com
-
 const url = 'http://localhost:3001'
 
 const App = () => {
@@ -32,6 +28,7 @@ const App = () => {
     // for use with google log in. pass down as props throughout the app.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState('0');
+    const [userName, setUserName] = useState(''); //pass to Log in/Log out as a prop.
 
 
 
@@ -103,19 +100,7 @@ const App = () => {
         });
 
         makeGetRequest();
-        // await axios.get(`${url}/db`, {
-        //     params: {
-        //         userId: userId
-        //     }
-        // })
-        // .then( res => {
-        //     const array = [];
-        //     res.data.forEach( (element) => {
-        //         array.push(element);
-        //     })
-        //     setList(array);
-        // });
-    };
+      };
 
 
     return (
@@ -129,6 +114,7 @@ const App = () => {
                             setIsLoggedIn={setIsLoggedIn}
                             userId={userId}
                             setUserId={setUserId}
+                            setUserName={setUserName}
                         />
                     </div>
                     <div style={{margin:'10px'}}>
@@ -137,13 +123,19 @@ const App = () => {
                             setIsLoggedIn={setIsLoggedIn}
                             userId={userId}
                             setUserId={setUserId}
+                            setUserName={setUserName}
                         />
                     </div>
                 </div>
 
+                {isLoggedIn ? (<div>{userName} is logged in.</div>) : (<div style={{color: 'purple', fontSize: '1.5rem'}}>Please Log In</div>)}
+                
+
                 <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
                 <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-                <Input 
+                
+                
+                {isLoggedIn ? (<Input 
                     isLoggedIn={isLoggedIn}
                     setIsLoggedIn={setIsLoggedIn}
                     userId={userId}
@@ -153,7 +145,7 @@ const App = () => {
                     makeDeleteRequest={makeDeleteRequest}
                     setList={setList}
                     list={list}
-                />    
+                />) : null}    
 
             </div>
         </div>
