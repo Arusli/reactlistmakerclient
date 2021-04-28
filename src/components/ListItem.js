@@ -40,7 +40,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     return (
         // contains one list item each
         <div style={{display: 'grid', width: '100%', height: '100%', padding: '10px 10px', borderRadius: '10px', gridTemplateColumns: '60% 20% 20%', alignItems: 'center', color: coloring, backgroundColor: '#3C3C3C', margin: '5px', fontSize: '1.5rem', fontWeight: 'bold'}}>
-            <div style={{overflowWrap: 'break-word'}}>{item.content}</div>
+            <div style={{overflowWrap: 'break-word', margin: '0 10px'}}>{item.content}</div>
             <button style={{color: '#ffffcc', backgroundColor: '#0080ff', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>
             <button style={{color: '#ffffcc', backgroundColor: '#FF3333', fontWeight: 'bold', height: '2.5rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
         </div>
