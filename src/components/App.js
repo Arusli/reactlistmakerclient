@@ -105,49 +105,54 @@ const App = () => {
 
 
     return (
-        <div style={{margin: '0 0 50px 0', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'start'}}>
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '50vw'}}>
-           
-                <div style={{width: '100vw', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#4C0099'}}>
-                    {isLoggedIn ? (<div style={{color: 'white', fontWeight: 'bold'}}>Welcome, {userName}.</div>) : null }
-                    {isLoggedIn ? null : (<div style={{margin:'10px 30px'}}>
-                        <Login 
-                            isLoggedIn={isLoggedIn}
-                            setIsLoggedIn={setIsLoggedIn}
-                            userId={userId}
-                            setUserId={setUserId}
-                            setUserName={setUserName}
-                        />
+        // container wrapping all content
+        <div style={{margin: '0', padding: '0px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                
+                {/* navbar */}
+                <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#4C0099'}}>
+                    {isLoggedIn ? (<div style={{color: '#CECECE', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
+                    {isLoggedIn ? null : 
+                    (<div style={{margin:'10px 30px'}}>
+                    <Login 
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        userId={userId}
+                        setUserId={setUserId}
+                        setUserName={setUserName}
+                    />
                     </div>)}
                     {isLoggedIn ? (<div style={{margin:'10px 30px'}}>
-                        <Logout 
-                            isLoggedIn={isLoggedIn}
-                            setIsLoggedIn={setIsLoggedIn}
-                            userId={userId}
-                            setUserId={setUserId}
-                            setUserName={setUserName}
-                        />
+                    <Logout 
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        userId={userId}
+                        setUserId={setUserId}
+                        setUserName={setUserName}
+                    />
                     </div>) : null}
-                </div>
+                </div> 
 
-                {/* add in a container here for styling/background */}
-                <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
-                <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-                {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontWeight: 'bold'}}>Please Log In.</div>)}
+                {/* input div */}
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+                    <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
+                    <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
+                    {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
-                {isLoggedIn ? (<Input 
-                    isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                    userId={userId}
-                    setUserId={setUserId}
-                    makeGetRequest={makeGetRequest}
-                    makePostRequest={makePostRequest}
-                    makeDeleteRequest={makeDeleteRequest}
-                    setList={setList}
-                    list={list}
-                />) : null}    
-
-            </div>
+                    {isLoggedIn ? (
+                        <Input 
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        userId={userId}
+                        setUserId={setUserId}
+                        makeGetRequest={makeGetRequest}
+                        makePostRequest={makePostRequest}
+                        makeDeleteRequest={makeDeleteRequest}
+                        setList={setList}
+                        list={list}
+                        />
+                        ) : null}    
+                </div>
+                
         </div>
     );
         

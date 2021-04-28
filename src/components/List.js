@@ -33,8 +33,8 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
                     justifyContent: 'center', 
                     alignItems: 'center', 
                     width: '50vw', 
-                    maxWidth: '500px', 
-                    minWidth: '350px', 
+                    maxWidth: '500px',  
+                    minWidth: '240px',
                     margin: '40px', 
                     textAlign: 'left'
                 }}>
