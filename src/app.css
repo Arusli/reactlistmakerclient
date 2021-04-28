@@ -1,0 +1,22 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #000044;
+    color: #ffffcc;
+    box-sizing: border-box;
+}
+
+button:hover {
+    opacity: .6;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.submitButton:hover {
+    opacity: .6;
+}

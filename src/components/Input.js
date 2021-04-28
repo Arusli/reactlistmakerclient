@@ -58,14 +58,14 @@ const Input = (
 
     return (
         // container div inside the input div
-        <div>
+        <div style={{marginTop: '20px'}}>
 
             {/* contains input bar and button */}
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <form onSubmit={onSubmit}>
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <input style={{textAlign: 'center', width: '50vw', minWidth: '210px', maxWidth: '350px', margin: '0', padding: '0', height: '2.5rem', fontSize: '1.2rem', backgroundColor: '#F7F7F7', border: 'solid 2px #0080ff'}} autoFocus type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)}></input>
-                        <input style={{textAlign: 'center', margin: '0 0 0 10px', height: '3rem', width: '3rem', color: 'white', fontWeight: 'bold', backgroundColor: '#EC37CE', borderRadius: '5px', borderStyle: 'none', fontSize: '1.5rem', cursor: 'pointer'}} type="submit" value="+"></input>
+                        <input className='submitButton' style={{textAlign: 'center', margin: '0 0 0 10px', height: '3rem', width: '3rem', color: 'white', fontWeight: 'bold', backgroundColor: 'purple', borderRadius: '5px', borderStyle: 'none', fontSize: '1.5rem', cursor: 'pointer'}} type="submit" value="+"></input>
                     </div>
                 </form>
             </div>

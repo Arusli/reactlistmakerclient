@@ -27,7 +27,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
         });
     
     return (
-            <div style={{
+            <ul style={{
                     display: 'flex', 
                     flexDirection: 'column', 
                     justifyContent: 'center', 
@@ -39,7 +39,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
                     textAlign: 'left'
                 }}>
                 {renderedList}
-            </div>
+            </ul>
     );
 }
 
