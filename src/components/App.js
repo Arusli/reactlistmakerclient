@@ -11,6 +11,7 @@ import Logout from './Logout';
 // 3. SOLVED - How to style login/logout component/buttons.
 // 4. SOLVED - Css formatting to look good, be responsive, and account for long term values.
 // 5. SOLVED - Edit list item css re: check mark toggling, possbily use useRef for this.
+// 6. SOLVED? - List item animations for add/drop
 // 6. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 7. re-refactor code, adding appropriate comments, deleting lodash from npm, etc.
 
@@ -32,8 +33,8 @@ const App = () => {
     // for use with google log in. pass down as props throughout the app.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState('0');
-    const [userName, setUserName] = useState(''); //pass to Log in/Log out as a prop.
-
+    const [userName, setUserName] = useState('');
+    //
 
 
     //MOVING IN THIS LOGIC FROM INPUT COMPONENT TO HERE
@@ -47,7 +48,7 @@ const App = () => {
     useEffect( () => {
         console.log('input useEffect renders');
         makeGetRequest();
-    }, [userId]); //if a blank array, this will only run once upon loading
+    }, [userId]);
 
 
     //(can i extract these requests/import them from another file somehow?)
@@ -70,7 +71,6 @@ const App = () => {
                 array.push(element);
                 // wordArray.push(element.content);
             });
-            // console.log(wordArray);
             setList(array);
             // setTermArray(wordArray);
         })
@@ -112,12 +112,12 @@ const App = () => {
         <div style={{}}>
                 
                 {/* navbar background. */}
-                <div style={{position: 'fixed', top: '0', height: '64px', width: '100%', opacity: '.85', backgroundColor: '#000044'}}></div>
+                <div class="navbar-bg"></div>
 
                 {/* navbar container for centering */}
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     {/* navbar */}
-                    <div style={{position: 'fixed', top: '0', height: '64px', width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
+                    <div class="navbar" >
                         {isLoggedIn ? (<div className='fadein' style={{color: '#CECECE', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
                         {isLoggedIn ? null : 
                         (<div style={{margin:'10px 30px'}}>

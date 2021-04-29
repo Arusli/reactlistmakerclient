@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-// import _ from 'lodash';  //remove lodash from npm possibly?
 
 
 const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
 
     console.log('ListItem Component Renders');
+    const [checked, setChecked] = useState(false);
+
+    //styling states
     const [maxHeight, setMaxHeight] = useState('150px');
     const [padding, setPadding] = useState('10px');
     const [display, setDisplay] = useState('grid');
-
-    //styling states
-    const [coloring, setColoring] = useState('rgba(255, 255, 204, 1)');
-    const [bgColoring, setBgColoring] = useState('rgba(60, 60, 60, 1)');
+    const [coloring, setColoring] = useState('rgba(255, 255, 204, 1)'); //move to useRef probably
+    const [bgColoring, setBgColoring] = useState('rgba(60, 60, 60, 1)'); //move to useRef probably
     const [textDec, setTextDec] = useState('none');
-    const [checked, setChecked] = useState(false);
+
 
 
     const checkOff = (e) => {
@@ -35,7 +35,6 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
         }
     };
 
-
     //UPDATE LIST TEST
      const updateList = () => {
         setMaxHeight('0px'); 
@@ -45,9 +44,8 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
         makeDeleteRequest(item);
     };
     
-
+    //one list item per component
     return (
-        // contains one list item each
         <li 
         className = 'add'
         style={{
