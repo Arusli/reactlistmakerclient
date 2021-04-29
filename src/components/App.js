@@ -10,7 +10,7 @@ import Logout from './Logout';
 // 2. SOLVED - Need to conditionally render list/input based on isLoggedIn State.
 // 3. SOLVED - How to style login/logout component/buttons.
 // 4. SOLVED - Css formatting to look good, be responsive, and account for long term values.
-// 5. Edit list item css re: check mark toggling, possbily use useRef for this.
+// 5. SOLVED - Edit list item css re: check mark toggling, possbily use useRef for this.
 // 6. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 7. re-refactor code, adding appropriate comments, deleting lodash from npm, etc.
 
@@ -111,13 +111,13 @@ const App = () => {
         // container wrapping all content
         <div style={{}}>
                 
-                {/* navbar background.  (bgcolor: #4C0099) */}
-                <div style={{position: 'fixed', top: '0', height: '64px', width: '100%'}}></div>
+                {/* navbar background. */}
+                <div style={{position: 'fixed', top: '0', height: '64px', width: '100%', opacity: '.85', backgroundColor: '#000044'}}></div>
 
                 {/* navbar container for centering */}
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     {/* navbar */}
-                    <div style={{position: 'fixed', top: '0', height: '64px', width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
+                    <div style={{position: 'fixed', top: '0', height: '64px', width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
                         {isLoggedIn ? (<div style={{color: '#CECECE', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
                         {isLoggedIn ? null : 
                         (<div style={{margin:'10px 30px'}}>
@@ -145,8 +145,8 @@ const App = () => {
                 {/* input div */}
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
                     <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
-                    <h5 style={{marginTop: '0px'}}>Built with react/node/sql.</h5>
-                    {isLoggedIn ? null : (<div style={{fontSize: '2rem', margin: '20px', fontWeight: 'bold'}}>Please Log In.</div>)}
+                    <h3 style={{marginTop: '0px'}}>Built with react/node/sql.</h3>
+                    {isLoggedIn ? null : (<div style={{fontSize: '2.6rem', margin: '30px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
                     {isLoggedIn ? (
                         <Input 

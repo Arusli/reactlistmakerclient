@@ -7,6 +7,7 @@ body {
     background-color: #000044;
     color: #ffffcc;
     box-sizing: border-box;
+    font-family: 'Lobster', cursive;
 }
 
 button:hover {
@@ -19,4 +20,28 @@ ul {
 
 .submitButton:hover {
     opacity: .6;
+}
+/* 
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms linear;
+} */
+
+li.add {
+    animation: add-animation .3s;
+}
+
+
+@keyframes add-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

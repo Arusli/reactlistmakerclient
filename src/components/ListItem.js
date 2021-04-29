@@ -5,35 +5,32 @@ import React, {useState} from 'react';
 const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
 
     console.log('ListItem Component Renders');
+    const [itemClass, setItemClass] = useState('add')
+
     //styling states
     const [coloring, setColoring] = useState('rgba(255, 255, 204, 1)');
     const [bgColoring, setBgColoring] = useState('rgba(60, 60, 60, 1)');
     const [textDec, setTextDec] = useState('none');
-    // const [sizing, setSizing] = useState('2rem');
     const [opacity, setOpacity] = useState('1');
     const [checked, setChecked] = useState(false);
+
 
     const checkOff = (e) => {
         e.preventDefault();
 
         if (!checked) {
-            // setColoring('grey');
-            // setOpacity('.5');
             setColoring('rgba(255, 255, 204, .3)');
             setBgColoring('rgba(60, 60, 60, .3)');
             setTextDec('line-through');
             setChecked(true);
-            // setSizing('2rem');
+            
         }
 
         if (checked) {
-            // setColoring('#ffffcc');
-            // setOpacity('1');
             setColoring('rgba(255, 255, 204, 1)');
             setBgColoring('rgba(60, 60, 60, 1)');
             setTextDec('none');
             setChecked(false);
-          
         }
     };
 
@@ -48,7 +45,9 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     //add a <pre> tag around {item} if you want to preserve spaces
     return (
         // contains one list item each
-        <li style={{
+        <li 
+        className={itemClass}
+        style={{
             display: 'grid', 
             width: '100%', 
             height: '100%', 
@@ -60,8 +59,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
             backgroundColor: bgColoring, 
             textDecoration: textDec,
             margin: '5px', 
-            fontSize: '1.5rem', 
-            fontWeight: 'bold',
+            fontSize: '1.6rem', 
             opacity: opacity
             }}>
             <div style={{overflowWrap: 'break-word', margin: '0 10px'}}>{item.content}</div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from './ListItem';
 
+
 const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
 
     console.log('List Component Renders');
@@ -21,8 +22,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
                     userId={userId}
                     setUserId={setUserId}
                     makeDeleteRequest={makeDeleteRequest}  
-                />
-                
+                    />                    
             );
         });
     
