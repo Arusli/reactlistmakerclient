@@ -1,13 +1,13 @@
 import React, {useRef} from 'react';
 import { GoogleLogin } from 'react-google-login';
 
-const Login = (
-    {   isLoggedIn, 
-        setIsLoggedIn, 
-        userId, 
-        setUserId, 
-        setUserIdRef,
-        setUserName
+const Login = ({
+    isLoggedIn, 
+    setIsLoggedIn, 
+    userId, 
+    setUserId, 
+    setUserIdRef,
+    setUserName
     }) => {
     console.log('Login Component Renders');
     const clientId = "610908639248-t99nq5ooodvi7r5qm834b2u2ruuh7hus.apps.googleusercontent.com"
@@ -51,7 +51,7 @@ const Login = (
                 isSignedIn={true}
             />
         </div>
-    );
+        );
 }
 
 

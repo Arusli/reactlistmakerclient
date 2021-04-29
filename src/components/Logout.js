@@ -1,12 +1,12 @@
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
 
-const Logout = (
-    {   isLoggedIn, 
-        setIsLoggedIn, 
-        userId, 
-        setUserId, 
-        setUserName
+const Logout = ({   
+    isLoggedIn, 
+    setIsLoggedIn, 
+    userId, 
+    setUserId, 
+    setUserName
     }) => {
         
     console.log('Logout Component Renders');
@@ -30,7 +30,7 @@ const Logout = (
                 onLogoutSuccess={logout}
             />
         </div>
-    );    
+        );    
 }
 
 export default Logout;

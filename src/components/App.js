@@ -114,16 +114,16 @@ const App = () => {
         <div style={{}}>
                 
                 {/* navbar background. */}
-                <div class="navbar-bg"></div>
+                <div className="navbar-bg"></div>
 
                 {/* navbar container for centering */}
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     
                     {/* navbar */}
-                    <div class="navbar" >
-                        {isLoggedIn ? (<div class='fadein' style={{color: '#CECECE', fontSize: '1.3rem', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
+                    <div className="navbar" >
+                        {isLoggedIn ? (<div className='fadein' style={{color: '#CECECE', fontSize: '1.3rem', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
                         {isLoggedIn ? null : 
-                        (<div style={{margin:'10px 30px'}}>
+                        (<div>
                             <Login 
                                 isLoggedIn={isLoggedIn}
                                 setIsLoggedIn={setIsLoggedIn}
@@ -133,7 +133,7 @@ const App = () => {
                             />
                         </div>)}
                         {isLoggedIn ? 
-                        (<div style={{margin:'10px 30px'}}>
+                        (<div>
                             <Logout 
                                 isLoggedIn={isLoggedIn}
                                 setIsLoggedIn={setIsLoggedIn}

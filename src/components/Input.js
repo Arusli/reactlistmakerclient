@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {BsPlusSquareFill} from 'react-icons/bs';
 import List from './List';
 
 const Input = (

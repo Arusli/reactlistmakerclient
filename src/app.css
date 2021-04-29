@@ -72,11 +72,11 @@ button:hover {
     margin: 0 0 0 10px; 
     height: 3rem;
     width: 3rem; 
-    color: white; 
+    color: #ffffcc; 
     font-weight: bold; 
-    background-color: purple; 
+    background-color: #000044; 
     border-radius: 5px; 
-    border-style: none; 
+    border: 3px solid #ffffcc;
     font-size: 1.5rem; 
     cursor: pointer;
 }
