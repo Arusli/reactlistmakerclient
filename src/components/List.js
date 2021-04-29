@@ -10,7 +10,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
     //contains properties {id, content, and user_id} from sql
     const renderedList = list.map(
         (item) => {
-            console.log('userId value in List component', userId); //HERE'S THE PROBLEM: WHEN USER LOGS IN, THIS USER ID IS NOT UPDATED YET, AND GETS PASSED TO LIST ITEM.
+            console.log('userId value in List component', userId);
             return (
                     <ListItem 
                     item={item} 
@@ -42,7 +42,7 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
                 }}>
                 {renderedList}
             </ul>
-    );
+            );
 }
 
 export default List;

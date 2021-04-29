@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import List from './List';
-// import { CSSTransition } from 'react-transition-group';
 
 const Input = (
     {isLoggedIn, 
@@ -17,28 +16,12 @@ const Input = (
     console.log('Input Component Renders');
     
     const [term, setTerm] = useState('');
-    // const [list, setList] = useState([]); 
-
-
-    // const [termArray, setTermArray] = useState([]); //use this for populating list without get requests, if needed.
-    // IF I WANT TO NOT MAKE AS MANY GET REQUESTS, I CAN POPULATE THE LIST WITH A TERM/WORD ARRAY.
-    //HOWEVER THIS RUNS THE PROBLEM OF NOT TRACKING SETTING ID'S FROM THE DATABASE ONTO THE NEW ITEMS.
-    //THIS MEANS WE CAN NO LONGER USE ID'S TO MAKE DELETE REQUESTS.
-    //WE COULD ASSIGN UUID'S TO EACH NEW ITEM I SUPPOSE... AND SAVE THAT ID INTO THE DATABSE AND USE THAT TO DELETE.
-    //THAT'S AN IDEA IF WE NEED TO DO IT.
-
-
-    //MOVED GET REQUEST AND POST REQUEST TO APP COMPONENT
-
-
     
     //why doesn't setList update immediately? https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
     //https://reactjs.org/docs/hooks-effect.html
     //https://linguinecode.com/post/why-react-setstate-usestate-does-not-update-immediately
 
     //STALE PROPS: https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
-
-
 
     
     //TEST NEW ONSUBMIT
@@ -68,8 +51,8 @@ const Input = (
                         display: 'flex', 
                         justifyContent: 'center', 
                         alignItems: 'center'}}>
-                        <input className='fadein input-field' autoFocus type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)}></input>
-                        <input className='submitButton fadein' type="submit" value="+"></input>
+                        <input className='fadein input-field' autoFocus type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)} />
+                        <input className='fadein submitButton' type="submit" value="+" />
                     </div>
                 </form>
             </div>

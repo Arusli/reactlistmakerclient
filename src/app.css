@@ -10,12 +10,27 @@ body {
     font-family: 'Lobster', cursive;
 }
 
-button:hover {
-    opacity: .6;
-}
-
 ul {
     list-style-type: none;
+}
+
+li {
+    transition-property: max-height padding;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;   
+    animation: expand-animation 1s ease-out; 
+    opacity: 1;  
+    width: 100%; 
+    overflow: hidden;
+    border-radius: 10px;
+    grid-template-columns: 60% 20% 20%; 
+    align-items: center; 
+    margin: 5px; 
+    font-size: 1.6rem; 
+}
+
+button:hover {
+    opacity: .6;
 }
 
 .navbar-bg {
@@ -74,6 +89,11 @@ ul {
     animation: fade-animation 1.5s ease-out;
 }
 
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+
 @keyframes fade-animation {
     from {
         opacity: 0;
@@ -84,9 +104,6 @@ ul {
     }
 }
 
-.add {
-    animation: expand-animation 1s ease-out;
-}
 
 @keyframes expand-animation {
     from {
@@ -96,12 +113,6 @@ ul {
     to {
         max-height: 100px
     }
-}
-
-li {
-    transition-property: max-height padding;
-    transition-duration: 200ms;
-    transition-timing-function: ease-in-out;    
 }
 
 @keyframes fadeout {
@@ -116,21 +127,18 @@ li {
     }
 }
 
-.pulse {
-     animation: pulse 1s infinite;
-}
 
 @keyframes pulse {
     0% {
-        opacity: .5;
-    }
-
-    50% {
         opacity: 1;
     }
 
-    100% {
+    50% {
         opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
     }    
     
 }

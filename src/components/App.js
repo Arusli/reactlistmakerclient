@@ -12,8 +12,10 @@ import Logout from './Logout';
 // 4. SOLVED - Css formatting to look good, be responsive, and account for long term values.
 // 5. SOLVED - Edit list item css re: check mark toggling, possbily use useRef for this.
 // 6. SOLVED? - List item animations for add/drop
-// 6. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
-// 7. re-refactor code, adding appropriate comments, deleting lodash from npm, etc.
+// 7. Add icons/react-icons
+// 8. useRef in listitem
+// 9. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
+// 10. re-refactor code, adding appropriate comments, deleting lodash from npm, etc.
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
@@ -116,36 +118,38 @@ const App = () => {
 
                 {/* navbar container for centering */}
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    
                     {/* navbar */}
                     <div class="navbar" >
-                        {isLoggedIn ? (<div className='fadein' style={{color: '#CECECE', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
+                        {isLoggedIn ? (<div class='fadein' style={{color: '#CECECE', fontSize: '1.3rem', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
                         {isLoggedIn ? null : 
                         (<div style={{margin:'10px 30px'}}>
-                        <Login 
-                            isLoggedIn={isLoggedIn}
-                            setIsLoggedIn={setIsLoggedIn}
-                            userId={userId}
-                            setUserId={setUserId}
-                            setUserName={setUserName}
-                        />
+                            <Login 
+                                isLoggedIn={isLoggedIn}
+                                setIsLoggedIn={setIsLoggedIn}
+                                userId={userId}
+                                setUserId={setUserId}
+                                setUserName={setUserName}
+                            />
                         </div>)}
-                        {isLoggedIn ? (<div style={{margin:'10px 30px'}}>
-                        <Logout 
-                            isLoggedIn={isLoggedIn}
-                            setIsLoggedIn={setIsLoggedIn}
-                            userId={userId}
-                            setUserId={setUserId}
-                            setUserName={setUserName}
-                        />
+                        {isLoggedIn ? 
+                        (<div style={{margin:'10px 30px'}}>
+                            <Logout 
+                                isLoggedIn={isLoggedIn}
+                                setIsLoggedIn={setIsLoggedIn}
+                                userId={userId}
+                                setUserId={setUserId}
+                                setUserName={setUserName}
+                            />
                         </div>) : null}
                     </div> 
                 </div>
                 
 
                 {/* input div */}
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
-                    <h1 className='fadein' style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
-                    <h3 className='fadein' style={{marginTop: '0px'}}>Built with react/node/sql.</h3>
+                <div className='fadein' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
+                    <h1 style={{marginBottom: '0px', marginTop: '3rem', fontSize: '2.5rem'}}>Listmaker</h1>
+                    <h3 style={{margin: '10px'}}>Built with react/node/sql.</h3>
                     {isLoggedIn ? null : (<div className='pulse' style={{fontSize: '2.6rem', margin: '30px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
                     {isLoggedIn ? (

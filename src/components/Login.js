@@ -1,11 +1,6 @@
 import React, {useRef} from 'react';
 import { GoogleLogin } from 'react-google-login';
 
-
-
-
-//console code to check if user is signed in: gapi.auth2.getAuthInstance().isSignedIn.get()
-
 const Login = (
     {   isLoggedIn, 
         setIsLoggedIn, 
