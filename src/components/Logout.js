@@ -23,7 +23,7 @@ const Logout = (
     }
 
     return (
-        <div>
+        <div className='fadein'>
             <GoogleLogout
                 clientId={clientId}
                 buttonText="Log Out"

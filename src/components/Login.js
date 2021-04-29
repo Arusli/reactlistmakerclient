@@ -48,7 +48,7 @@ const Login = (
     }
 
     return (
-        <div>
+        <div className='fadein' >
             <GoogleLogin
                 clientId={clientId}
                 buttonText="Log In"

@@ -103,7 +103,7 @@ const App = () => {
             console.log(res.data);
         });
 
-        makeGetRequest();
+        // makeGetRequest();  unneeded
       };
 
 
@@ -118,7 +118,7 @@ const App = () => {
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     {/* navbar */}
                     <div style={{position: 'fixed', top: '0', height: '64px', width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
-                        {isLoggedIn ? (<div style={{color: '#CECECE', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
+                        {isLoggedIn ? (<div className='fadein' style={{color: '#CECECE', fontWeight: 'bold'}}>{userName}'s List</div>) : null }
                         {isLoggedIn ? null : 
                         (<div style={{margin:'10px 30px'}}>
                         <Login 
@@ -144,9 +144,9 @@ const App = () => {
 
                 {/* input div */}
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
-                    <h1 style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
-                    <h3 style={{marginTop: '0px'}}>Built with react/node/sql.</h3>
-                    {isLoggedIn ? null : (<div style={{fontSize: '2.6rem', margin: '30px', fontWeight: 'bold'}}>Please Log In.</div>)}
+                    <h1 className='fadein' style={{marginBottom: '0px', marginTop: '5rem'}}>Listmaker</h1>
+                    <h3 className='fadein' style={{marginTop: '0px'}}>Built with react/node/sql.</h3>
+                    {isLoggedIn ? null : (<div className='fadein' style={{fontSize: '2.6rem', margin: '30px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
                     {isLoggedIn ? (
                         <Input 

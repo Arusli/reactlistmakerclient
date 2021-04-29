@@ -5,13 +5,15 @@ import React, {useState} from 'react';
 const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
 
     console.log('ListItem Component Renders');
-    const [itemClass, setItemClass] = useState('add')
+    const [itemClass, setItemClass] = useState('add');
+    // const [height, setHeight] = useState('100%'); //this didn't work, not sure why. 
+    const [display, setDisplay] = useState('grid');
 
     //styling states
     const [coloring, setColoring] = useState('rgba(255, 255, 204, 1)');
     const [bgColoring, setBgColoring] = useState('rgba(60, 60, 60, 1)');
     const [textDec, setTextDec] = useState('none');
-    const [opacity, setOpacity] = useState('1');
+    // const [opacity, setOpacity] = useState('1');
     const [checked, setChecked] = useState(false);
 
 
@@ -36,21 +38,22 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
 
     //UPDATE LIST TEST
-     const updateList = async () => {
+     const updateList = () => {
+        setItemClass('drop');
+        setTimeout(()=>setDisplay('none'), 190);
         console.log('item:',item);
-        await makeDeleteRequest(item);
+        makeDeleteRequest(item);
     };
     
 
-    //add a <pre> tag around {item} if you want to preserve spaces
     return (
         // contains one list item each
         <li 
         className={itemClass}
         style={{
-            display: 'grid', 
+            display: display,
             width: '100%', 
-            height: '100%', 
+            height: '100%',
             padding: '10px 10px', 
             borderRadius: '10px', 
             gridTemplateColumns: '60% 20% 20%', 
@@ -60,7 +63,6 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
             textDecoration: textDec,
             margin: '5px', 
             fontSize: '1.6rem', 
-            opacity: opacity
             }}>
             <div style={{overflowWrap: 'break-word', margin: '0 10px'}}>{item.content}</div>
             <button style={{color: '#ffffcc', backgroundColor: '#0080ff', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff}>&#10003;</button>

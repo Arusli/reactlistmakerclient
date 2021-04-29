@@ -31,6 +31,10 @@ ul {
     transition: opacity 1000ms linear;
 } */
 
+.fadein {
+    animation: add-animation 2s;
+}
+
 li.add {
     animation: add-animation .3s;
 }
@@ -43,5 +47,20 @@ li.add {
 
     to {
         opacity: 1;
+    }
+}
+
+li.drop {
+    animation: drop-animation .2s;
+}
+
+
+@keyframes drop-animation {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
