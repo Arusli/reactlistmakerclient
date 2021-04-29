@@ -5,15 +5,14 @@ import React, {useState} from 'react';
 const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
 
     console.log('ListItem Component Renders');
-    const [itemClass, setItemClass] = useState('add');
-    // const [height, setHeight] = useState('100%'); //this didn't work, not sure why. 
+    const [maxHeight, setMaxHeight] = useState('150px');
+    const [padding, setPadding] = useState('10px');
     const [display, setDisplay] = useState('grid');
 
     //styling states
     const [coloring, setColoring] = useState('rgba(255, 255, 204, 1)');
     const [bgColoring, setBgColoring] = useState('rgba(60, 60, 60, 1)');
     const [textDec, setTextDec] = useState('none');
-    // const [opacity, setOpacity] = useState('1');
     const [checked, setChecked] = useState(false);
 
 
@@ -39,7 +38,8 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
 
     //UPDATE LIST TEST
      const updateList = () => {
-        setItemClass('drop');
+        setMaxHeight('0px'); 
+        setPadding('0px')
         setTimeout(()=>setDisplay('none'), 190);
         console.log('item:',item);
         makeDeleteRequest(item);
@@ -49,12 +49,14 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     return (
         // contains one list item each
         <li 
-        className={itemClass}
+        className = 'add'
         style={{
+            opacity: 1,
             display: display,
             width: '100%', 
-            height: '100%',
-            padding: '10px 10px', 
+            maxHeight: maxHeight,
+            overflow: 'hidden',
+            padding: padding, 
             borderRadius: '10px', 
             gridTemplateColumns: '60% 20% 20%', 
             alignItems: 'center', 

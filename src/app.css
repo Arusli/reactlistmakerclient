@@ -21,26 +21,13 @@ ul {
 .submitButton:hover {
     opacity: .6;
 }
-/* 
-.fade-enter {
-    opacity: 0;
-}
 
-.fade-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms linear;
-} */
 
 .fadein {
-    animation: add-animation 2s;
+    animation: fade-animation 1.5s ease-out;
 }
 
-li.add {
-    animation: add-animation .3s;
-}
-
-
-@keyframes add-animation {
+@keyframes fade-animation {
     from {
         opacity: 0;
     }
@@ -50,17 +37,55 @@ li.add {
     }
 }
 
-li.drop {
-    animation: drop-animation .2s;
+
+.add {
+    animation: expand-animation 1s ease-out;
+}
+
+@keyframes expand-animation {
+    from {
+        max-height: 0px
+    }
+
+    to {
+        max-height: 100px
+    }
 }
 
 
-@keyframes drop-animation {
+li {
+    transition-property: max-height padding;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;    
+}
+
+@keyframes fadeout {
     from {
         opacity: 1;
+        height: 100%;
     }
 
     to {
         opacity: 0;
+        height: 0;
     }
+}
+
+.pulse {
+     animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .5;
+    }    
+    
 }

@@ -27,7 +27,9 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
         });
     
     return (
-            <ul style={{
+            <ul 
+            className="fadelist"
+            style={{
                     display: 'flex', 
                     flexDirection: 'column', 
                     justifyContent: 'center', 
