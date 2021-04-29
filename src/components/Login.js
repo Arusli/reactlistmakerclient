@@ -37,9 +37,7 @@ const Login = (
         setUserId(response.googleId);
         setUserName(response.profileObj.name);
         console.log('user id: ', userId); //stale state problem here
-        console.log('user id ref: ', userIdRef.current) //this is still doing the stale state problem...
-        //after this logs in we need to make the Get Request and populate hte screen.
-        
+        console.log('user id ref: ', userIdRef.current) //this is still doing the stale state problem...        
     }
 
     return (

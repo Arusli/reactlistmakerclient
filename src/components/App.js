@@ -12,7 +12,7 @@ import Logout from './Logout';
 // 4. SOLVED - Css formatting to look good, be responsive, and account for long term values.
 // 5. SOLVED - Edit list item css re: check mark toggling, possbily use useRef for this.
 // 6. SOLVED? - List item animations for add/drop
-// 7. Add icons/react-icons
+// 7. SOLVED - Add icons/react-icons
 // 8. useRef in listitem
 // 9. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 10. re-refactor code, adding appropriate comments, deleting lodash from npm, etc.

@@ -1,4 +1,6 @@
 import React, {useState, useRef} from 'react';
+import {FaCheckCircle} from 'react-icons/fa';
+import {MdRemoveCircle} from 'react-icons/md';
 
 const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
     console.log('ListItem Component Renders');
@@ -50,10 +52,12 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
             textDecoration: textDec,
             }}>
             <div style={{overflowWrap: 'break-word', margin: '0 10px'}}>{item.content}</div>
-            <button style={{color: '#ffffcc', backgroundColor: '#0080ff', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff} >&#10003;</button>
-            <button style={{color: '#ffffcc', backgroundColor: '#FF3333', fontWeight: 'bold', height: '2.5rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} >X</button>
+            <button style={{color: '#ffffcc', backgroundColor: '#0080ff', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff} ><FaCheckCircle size="1.4rem" /></button>
+            <button style={{color: '#ffffcc', backgroundColor: '#FF3333', fontWeight: 'bold', height: '2.5rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} ><MdRemoveCircle size="1.5rem"  /></button>
         </li>
     );
 }
+
+//&#10003;
 
 export default ListItem;

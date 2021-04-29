@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {BsPlusSquareFill} from 'react-icons/bs';
 import List from './List';
 
 const Input = (
@@ -52,7 +53,7 @@ const Input = (
                         justifyContent: 'center', 
                         alignItems: 'center'}}>
                         <input className='fadein input-field' autoFocus type="text" maxLength="40" value={term} onChange={event => setTerm(event.target.value)} />
-                        <input className='fadein submitButton' type="submit" value="+" />
+                        <input className='fadein submitButton' type="submit" value="+"></input>
                     </div>
                 </form>
             </div>
