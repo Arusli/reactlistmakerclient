@@ -26,7 +26,7 @@ const Input = (
     
     //TEST NEW ONSUBMIT
     const onSubmit = async (event) => {
-        if (term !== '') {
+        if (term !== '' && list.length < 51) {
             event.preventDefault();
             await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
             await makeGetRequest();
@@ -35,7 +35,7 @@ const Input = (
             // console.log('user id ref', userIdRef.current)
         }
         
-        if (term === '') {
+        if (term === '' || list.length >= 51) {
             event.preventDefault();
         }
     }

@@ -77,9 +77,11 @@ const App = () => {
             });
             setList(array);
             // setTermArray(wordArray);
-        })
+        }).catch( err => {
+            console.log('get request error ', err);
+            alert(err);
+        });
     };
-    
 
     //POST REQUEST
     const makePostRequest = async (content) => {
@@ -90,6 +92,8 @@ const App = () => {
         })
         .then( res => {
             console.log(res.data);
+        }).catch(err => {
+            console.log('post request error ', err);
         });
     };
 
@@ -105,9 +109,15 @@ const App = () => {
         })
         .then( res => {
             console.log(res.data);
+        }).catch(err => {
+            console.log('delete request error ', err);
         });
 
-        // makeGetRequest();  unneeded
+        // makeGetRequest only need to control bug where if a user enters the max (50) items
+        // that user won't be able to add items even after they delete items
+        // because the list ONLY UPDATES when the get request is called.
+        // the deletions are only visual until the getRequest requests and re-renders that list.
+        // makeGetRequest();  
       };
 
 
