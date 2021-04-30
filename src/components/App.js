@@ -13,9 +13,11 @@ import Logout from './Logout';
 // 5. SOLVED - Edit list item css re: check mark toggling, possbily use useRef for this.
 // 6. SOLVED? - List item animations for add/drop
 // 7. SOLVED - Add icons/react-icons
-// 8. useRef in listitem
-// 9. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
-// 10. re-refactor code, adding appropriate comments, deleting lodash from npm, etc.
+// 8. SOLVED - useRef in listitem. (did this but don't understand it well)
+// 9. SOLVED - delete lodash and react transition group from npm
+// 10. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
+// 11. error handling on server/client side? list size limiting?
+// 12. re-refactor code, adding appropriate comments.
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
