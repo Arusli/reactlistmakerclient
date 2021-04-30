@@ -38,7 +38,8 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
      const updateList = () => {
         setMaxHeight('0px'); 
         setPadding('0px')
-        setTimeout(()=>setDisplay('none'), 190); //prevents weird css spacing backup when deleting multiple items.
+        setTimeout(()=>setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
+        //update list state minus the term, no get request. - katie
         console.log('item:',item);
         makeDeleteRequest(item);
     };
@@ -47,6 +48,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     //Remember: only the targeted list item will re-render on listitem state change.
     return (
         <li 
+        // className={classVariable} - just use regular variable to change this. - katie
         style={{
             display: display,
             maxHeight: maxHeight,

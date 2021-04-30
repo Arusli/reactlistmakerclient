@@ -18,6 +18,7 @@ import Logout from './Logout';
 // 10. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 11. error handling on server/client side? list size limiting?
 // 12. re-refactor code, adding appropriate comments.
+// 13. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
@@ -117,7 +118,7 @@ const App = () => {
         // that user won't be able to add items even after they delete items
         // because the list ONLY UPDATES when the get request is called.
         // the deletions are only visual until the getRequest requests and re-renders that list.
-        // makeGetRequest();  
+        makeGetRequest();  
       };
 
 
