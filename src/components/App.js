@@ -39,12 +39,8 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState('0');
     const [userName, setUserName] = useState('');
-    //
-
-
-    //MOVING IN THIS LOGIC FROM INPUT COMPONENT TO HERE
     const [list, setList] = useState([]); 
-
+    //
     const userIdRef = useRef('0');
     userIdRef.current = userId;
 
@@ -72,6 +68,8 @@ const App = () => {
             const array = [];
             // const wordArray = [];
             console.log('get request response: ', res.data);
+            // res.data is an array of objects from sql.
+            // e.g. res.data[0] === {id: 1955, content: "one", user_id: "114716709116595320820"}
             res.data.forEach( (element) => {
                 array.push(element);
                 // wordArray.push(element.content);

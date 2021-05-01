@@ -10,10 +10,6 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     const [classChecked, setClassChecked] = useState('unchecked');
     const [display, setDisplay] = useState('grid');
  
-    // const [maxHeight, setMaxHeight] = useState('150px');
-    // const [padding, setPadding] = useState('10px');
-    
- 
     const checkOff = (e) => {
         e.preventDefault();
         if (classChecked === 'unchecked') {
@@ -28,7 +24,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     //UPDATE LIST TEST
      const updateList = () => {
         setClassOpen('closed');
-        setTimeout(()=>setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
+        setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
         //update list state minus the term, no get request. - katie.
         console.log('item:',item);
         makeDeleteRequest(item);
@@ -41,9 +37,7 @@ const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUs
     return (
         <li 
         className={`${classChecked} ${classOpen}`}
-        style={{
-            display: display,
-            }}>
+        style={{display: display}}>
             <div style={{overflowWrap: 'break-word', margin: '0 10px'}}>{item.content}</div>
             <button style={{color: '#ffffcc', backgroundColor: '#0080ff', fontWeight: 'bold', height: '2.5rem', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={checkOff} ><FaCheckCircle size="1.4rem" /></button>
             <button style={{color: '#ffffcc', backgroundColor: '#FF3333', fontWeight: 'bold', height: '2.5rem', marginLeft: '10px', cursor: 'pointer', borderRadius: '5px', borderStyle: 'none'}} onClick={updateList} ><MdRemoveCircle size="1.5rem"  /></button>

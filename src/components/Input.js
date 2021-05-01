@@ -29,7 +29,7 @@ const Input = (
         if (term !== '' && list.length < 51) {
             event.preventDefault();
             await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
-            await makeGetRequest(); //UPDATE ARRAY, DON'T MAKE GET REQUEST. - katie
+            await makeGetRequest(); //UPDATE ARRAY, DON'T MAKE GET REQUEST. - katie. (here you should update list with the term. but realize that right now list is a list of objects.)
             setTerm(''); 
             console.log('user id', userId);
             // console.log('user id ref', userIdRef.current)
