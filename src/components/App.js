@@ -3,6 +3,7 @@ import axios from 'axios';
 import Input from './Input';
 import Login from './Login';
 import Logout from './Logout';
+import List from './List';
 
 
 //MAIN PROBLEMS:
@@ -177,6 +178,22 @@ const App = () => {
                         />
                         ) : null}    
                 </div>
+
+                {/* List div (moved from Input) */}
+                {isLoggedIn ? (
+                    <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <List 
+                            list={list} 
+                            setList={setList} 
+                            isLoggedIn={isLoggedIn}
+                            setIsLoggedIn={setIsLoggedIn}
+                            userId={userId}
+                            setUserId={setUserId}  
+                            makeDeleteRequest={makeDeleteRequest}
+                        />
+                    </div>
+                ) : null}
+              
                 
         </div>
     );

@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import List from './List';
 
+//why doesn't setList update immediately? https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
+    //https://reactjs.org/docs/hooks-effect.html
+    //https://linguinecode.com/post/why-react-setstate-usestate-does-not-update-immediately
+
+    //STALE PROPS: https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
+
+
 const Input = (
     {isLoggedIn, 
     setIsLoggedIn, 
@@ -16,13 +23,6 @@ const Input = (
     console.log('Input Component Renders');
     
     const [term, setTerm] = useState('');
-    
-    //why doesn't setList update immediately? https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
-    //https://reactjs.org/docs/hooks-effect.html
-    //https://linguinecode.com/post/why-react-setstate-usestate-does-not-update-immediately
-
-    //STALE PROPS: https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
-
     
     //TEST NEW ONSUBMIT
     const onSubmit = async (event) => {
@@ -58,7 +58,7 @@ const Input = (
             </div>
 
             {/* contains list of items */}
-            <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            {/* <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <List 
                         list={list} 
                         setList={setList} 
@@ -68,7 +68,7 @@ const Input = (
                         setUserId={setUserId}  
                         makeDeleteRequest={makeDeleteRequest}
                     />
-            </div>
+            </div> */}
 
         </div>
     );
