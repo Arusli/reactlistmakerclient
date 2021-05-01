@@ -2,7 +2,16 @@ import React, {useState, useRef} from 'react';
 import {FaCheckCircle} from 'react-icons/fa';
 import {MdRemoveCircle} from 'react-icons/md';
 
-const ListItem = ({item, list, setList, isLoggedIn, setIsLoggedIn, userId, setUserId, makeDeleteRequest}) => {
+const ListItem = ({
+    item, 
+    list, 
+    setList,
+    makeDeleteRequest 
+    // isLoggedIn, 
+    // setIsLoggedIn, 
+    // userId, 
+    // setUserId
+    }) => {
     console.log('ListItem Component Renders');
     // const [checked, setChecked] = useState(false);
     //styling states

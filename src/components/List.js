@@ -2,7 +2,15 @@ import React from 'react';
 import ListItem from './ListItem';
 
 
-const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, userId, setUserId}) => {
+const List = ({
+    list, 
+    setList, 
+    makeDeleteRequest, 
+    // isLoggedIn, 
+    // setIsLoggedIn, 
+    // userId, 
+    // setUserId
+    }) => {
 
     console.log('List Component Renders');
 
@@ -17,10 +25,10 @@ const List = ({list, setList, makeDeleteRequest, isLoggedIn, setIsLoggedIn, user
                     list={list} 
                     setList={setList} 
                     key={item.id} 
-                    isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                    userId={userId}
-                    setUserId={setUserId}
+                    // isLoggedIn={isLoggedIn}
+                    // setIsLoggedIn={setIsLoggedIn}
+                    // userId={userId}
+                    // setUserId={setUserId}
                     makeDeleteRequest={makeDeleteRequest}  
                     />                    
             );

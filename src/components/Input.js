@@ -9,13 +9,14 @@ import List from './List';
 
 
 const Input = (
-    {isLoggedIn, 
-    setIsLoggedIn, 
+    {
+    // isLoggedIn, 
+    // setIsLoggedIn, 
     userId, 
-    setUserId, 
+    // setUserId, 
     makeGetRequest, 
     makePostRequest, 
-    makeDeleteRequest,
+    // makeDeleteRequest,
     list, 
     setList
     }) => {
