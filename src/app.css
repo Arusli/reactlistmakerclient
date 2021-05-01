@@ -29,6 +29,30 @@ li {
     font-size: 1.6rem; 
 }
 
+li.unchecked {
+    color: rgba(255, 255, 204, 1);
+    background-color: rgba(60, 60, 60, 1);
+    text-decoration: none;
+}
+
+li.checked {
+    color: rgba(255, 255, 204, .3);
+    background-color: rgba(60, 60, 60, .3);
+    text-decoration: line-through;
+}
+
+li.open {
+    max-height: 150px;
+    padding: 10px;
+}
+
+li.closed {
+    max-height: 0px;
+    padding: 0px;
+}
+
+
+
 button:hover {
     opacity: .6;
 }
