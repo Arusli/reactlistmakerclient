@@ -6,10 +6,7 @@ const List = ({
     list, 
     setList, 
     makeDeleteRequest, 
-    // isLoggedIn, 
-    // setIsLoggedIn, 
-    // userId, 
-    // setUserId
+    userId, 
     }) => {
 
     console.log('List Component Renders');
@@ -25,10 +22,6 @@ const List = ({
                     list={list} 
                     setList={setList} 
                     key={item.id} 
-                    // isLoggedIn={isLoggedIn}
-                    // setIsLoggedIn={setIsLoggedIn}
-                    // userId={userId}
-                    // setUserId={setUserId}
                     makeDeleteRequest={makeDeleteRequest}  
                     />                    
             );

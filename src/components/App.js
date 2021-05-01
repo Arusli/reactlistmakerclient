@@ -166,13 +166,9 @@ const App = () => {
                 
                     {isLoggedIn ? (
                         <Input 
-                        // isLoggedIn={isLoggedIn}
-                        // setIsLoggedIn={setIsLoggedIn}
                         userId={userId}
-                        // setUserId={setUserId}
                         makeGetRequest={makeGetRequest}
                         makePostRequest={makePostRequest}
-                        // makeDeleteRequest={makeDeleteRequest}
                         list={list}
                         setList={setList}
                         />
@@ -186,10 +182,7 @@ const App = () => {
                             list={list} 
                             setList={setList} 
                             makeDeleteRequest={makeDeleteRequest}
-                            // isLoggedIn={isLoggedIn}
-                            // setIsLoggedIn={setIsLoggedIn}
-                            // userId={userId}
-                            // setUserId={setUserId}  
+                            userId={userId} 
                         />
                     </div>
                 ) : null}

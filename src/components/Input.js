@@ -10,13 +10,9 @@ import List from './List';
 
 const Input = (
     {
-    // isLoggedIn, 
-    // setIsLoggedIn, 
     userId, 
-    // setUserId, 
     makeGetRequest, 
     makePostRequest, 
-    // makeDeleteRequest,
     list, 
     setList
     }) => {
@@ -25,12 +21,19 @@ const Input = (
     
     const [term, setTerm] = useState('');
     
+
+    //UPDATE LIST/ARRAY, DON'T MAKE GET REQUEST. - katie. 
+            // (here you should update list with the term. but realize that right now list is a list of objects.)
+            // Realized I can't do this because I can't delete the correct item from the DB without knowing the id,
+            // and the id property is assigned in sequel and needs to be getRequested.
+            // I could use UUIDs and avoid this problem, technically.
+
     //TEST NEW ONSUBMIT
     const onSubmit = async (event) => {
         if (term !== '' && list.length < 51) {
             event.preventDefault();
             await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
-            await makeGetRequest(); //UPDATE ARRAY, DON'T MAKE GET REQUEST. - katie. (here you should update list with the term. but realize that right now list is a list of objects.)
+            await makeGetRequest(); 
             setTerm(''); 
             console.log('user id', userId);
             // console.log('user id ref', userIdRef.current)
@@ -57,20 +60,7 @@ const Input = (
                     </div>
                 </form>
             </div>
-
-            {/* contains list of items */}
-            {/* <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <List 
-                        list={list} 
-                        setList={setList} 
-                        isLoggedIn={isLoggedIn}
-                        setIsLoggedIn={setIsLoggedIn}
-                        userId={userId}
-                        setUserId={setUserId}  
-                        makeDeleteRequest={makeDeleteRequest}
-                    />
-            </div> */}
-
+            
         </div>
     );
 }

@@ -2,15 +2,13 @@ import React, {useState, useRef} from 'react';
 import {FaCheckCircle} from 'react-icons/fa';
 import {MdRemoveCircle} from 'react-icons/md';
 
+//DAVID NOTE: move some of these states up to List parent component, pass down as props. more standard.
+
 const ListItem = ({
     item, 
     list, 
     setList,
     makeDeleteRequest 
-    // isLoggedIn, 
-    // setIsLoggedIn, 
-    // userId, 
-    // setUserId
     }) => {
     console.log('ListItem Component Renders');
     // const [checked, setChecked] = useState(false);
@@ -34,14 +32,13 @@ const ListItem = ({
      const updateList = () => {
         setClassOpen('closed');
         setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
-        //update list state minus the term, no get request. - katie.
+        //set Timeout => update list state minus the term, no get request. - katie.
         console.log('item:',item);
         makeDeleteRequest(item);
     };
     
     //Remember: one list item per component, each with their own personal states.
     //Remember: only the targeted list item will re-render on listitem state change.
-   
     // just use regular variable to change classname. - katie. (this didn't work for me?)
     return (
         <li 
