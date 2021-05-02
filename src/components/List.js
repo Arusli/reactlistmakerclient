@@ -7,7 +7,8 @@ const List = ({
     setList, 
     makeDeleteRequest, 
     userId, 
-    makeDeleteAndGetRequest
+    makeDeleteAndGetRequest,
+    maxListLength
     }) => {
 
     console.log('List Component Renders');
@@ -25,6 +26,7 @@ const List = ({
                     key={item.id} 
                     makeDeleteRequest={makeDeleteRequest}  
                     makeDeleteAndGetRequest={makeDeleteAndGetRequest}
+                    maxListLength={maxListLength}
                     />                    
             );
         });

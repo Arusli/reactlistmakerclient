@@ -9,7 +9,8 @@ const ListItem = ({
     list, 
     setList,
     makeDeleteRequest,
-    makeDeleteAndGetRequest 
+    makeDeleteAndGetRequest,
+    maxListLength
     }) => {
 
     console.log('ListItem Component Renders');
@@ -33,14 +34,14 @@ const ListItem = ({
     //UPDATE LIST TEST
      const updateList = () => {
 
-        if (list.length <= 39) {
+        if (list.length <= maxListLength - 1) {
             setClassOpen('closed');
             setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
             console.log('item:',item);
             makeDeleteRequest(item);
         }
 
-        if (list.length > 39) {
+        if (list.length > maxListLength - 1) {
             setClassOpen('closed');
             setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
             console.log('item:',item);

@@ -44,6 +44,8 @@ const App = () => {
     const [userName, setUserName] = useState('');
     const [list, setList] = useState([]); 
     //
+    const maxListLength = 20;
+    //
     const userIdRef = useRef('0');
     userIdRef.current = userId;
 
@@ -173,6 +175,7 @@ const App = () => {
                         makePostRequest={makePostRequest}
                         list={list}
                         setList={setList}
+                        maxListLength={maxListLength}
                         />
                         ) : null}    
                 </div>
@@ -186,6 +189,7 @@ const App = () => {
                             makeDeleteRequest={makeDeleteRequest}
                             userId={userId} 
                             makeDeleteAndGetRequest={makeDeleteAndGetRequest}
+                            maxListLength={maxListLength}
                         />
                     </div>
                 ) : null}

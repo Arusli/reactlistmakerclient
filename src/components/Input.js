@@ -7,13 +7,14 @@ const Input = (
     makeGetRequest, 
     makePostRequest, 
     list, 
-    setList
+    setList,
+    maxListLength
     }) => {
 
     console.log('Input Component Renders');
     
     const [term, setTerm] = useState('');
-    
+
     //UPDATE LIST/ARRAY, DON'T MAKE GET REQUEST. - katie. 
     // (here you should update list with the term. but realize that right now list is a list of objects.)
     // Realized I can't do this because I can't delete the correct item from the DB without knowing the id,
@@ -22,7 +23,7 @@ const Input = (
     
     //ONSUBMIT
     const onSubmit = async (event) => {
-        if (term !== '' && list.length <= 40) {
+        if (term !== '' && list.length <= maxListLength) {
             event.preventDefault();
             await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
             await makeGetRequest(); 
@@ -30,7 +31,7 @@ const Input = (
             console.log('user id', userId);
         }
         
-        if (term === '' || list.length > 40) {
+        if (term === '' || list.length > maxListLength) {
             event.preventDefault();
         }
     }
