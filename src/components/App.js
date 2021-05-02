@@ -5,7 +5,6 @@ import Login from './Login';
 import Logout from './Logout';
 import List from './List';
 
-
 //MAIN PROBLEMS:
 // 1. SOLVED - list rendering on load problem, via useEffect [userId].
 // 2. SOLVED - Need to conditionally render list/input based on isLoggedIn State.
@@ -16,10 +15,13 @@ import List from './List';
 // 7. SOLVED - Add icons/react-icons
 // 8. SOLVED - useRef in listitem. (did this but don't understand it well)
 // 9. SOLVED - delete lodash and react transition group from npm
-// 10. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
-// 11. error handling on server/client side? list size limiting?
-// 12. re-refactor code, adding appropriate comments.
-// 13. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
+// 10. SOLVED - decided not to refactor code according to Katie's advice, due to sql ids being used in makeDelete.
+// 11. SOLVED - error handling on server/client side? list size limiting?
+// 12. SOLVED - handle max list size delete bug...
+// 13. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
+// 14. re-refactor code, adding appropriate comments.
+// 15. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
+
 
 // https://developers.google.com/identity/sign-in/web/sign-in
 // https://developers.google.com/identity/sign-in/web/backend-auth
@@ -45,13 +47,11 @@ const App = () => {
     const userIdRef = useRef('0');
     userIdRef.current = userId;
 
-
     //USE EFFECT RERENDERS APP WHENEVER USER ID CHANGES. THIS REDISPLAYS UPDATED LIST ITEMS.
     useEffect( () => {
         console.log('input useEffect renders');
         makeGetRequest();
     }, [userId]);
-
 
     //(can i extract these requests/import them from another file somehow?)
     //GET REQUEST
@@ -67,16 +67,17 @@ const App = () => {
         })
         .then( res => {
             const array = [];
-            // const wordArray = [];
             console.log('get request response: ', res.data);
             // res.data is an array of objects from sql.
             // e.g. res.data[0] === {id: 1955, content: "one", user_id: "114716709116595320820"}
             res.data.forEach( (element) => {
+                //HYPOTHETICAL REFACTOR (David style)
+                //element.classOpen = 'open'
+                //element.classChecked = 'unchecked'
+                //element.classDisplay = 'grid'
                 array.push(element);
-                // wordArray.push(element.content);
             });
             setList(array);
-            // setTermArray(wordArray);
         }).catch( err => {
             console.log('get request error ', err);
             alert(err);
@@ -97,7 +98,6 @@ const App = () => {
         });
     };
 
-
     //DELETE REQUEST
     const makeDeleteRequest = async (item) => {
         console.log('userId value in ListItem Component', userId);
@@ -112,14 +112,17 @@ const App = () => {
         }).catch(err => {
             console.log('delete request error ', err);
         });
+      };
 
-        // makeGetRequest only need to control bug where if a user enters the max (50) items
+    //MAKE AND DELETE REQUEST
+        //makeGetRequest only needed to control bug where if a user hits the max list.length
         // that user won't be able to add items even after they delete items
         // because the list ONLY UPDATES when the get request is called.
         // the deletions are only visual until the getRequest requests and re-renders that list.
-        // makeGetRequest();  
-      };
-
+    const makeDeleteAndGetRequest = async (item) => {
+        await makeDeleteRequest(item);
+        makeGetRequest();
+    }
 
     return (
         // container wrapping all content
@@ -157,7 +160,6 @@ const App = () => {
                     </div> 
                 </div>
                 
-
                 {/* input div */}
                 <div className='fadein' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
                     <h1 style={{marginBottom: '0px', marginTop: '3rem', fontSize: '2.5rem'}}>Listmaker</h1>
@@ -175,7 +177,7 @@ const App = () => {
                         ) : null}    
                 </div>
 
-                {/* List div (moved from Input) */}
+                {/* List div */}
                 {isLoggedIn ? (
                     <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <List 
@@ -183,11 +185,11 @@ const App = () => {
                             setList={setList} 
                             makeDeleteRequest={makeDeleteRequest}
                             userId={userId} 
+                            makeDeleteAndGetRequest={makeDeleteAndGetRequest}
                         />
                     </div>
                 ) : null}
-              
-                
+                         
         </div>
     );
         

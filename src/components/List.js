@@ -7,6 +7,7 @@ const List = ({
     setList, 
     makeDeleteRequest, 
     userId, 
+    makeDeleteAndGetRequest
     }) => {
 
     console.log('List Component Renders');
@@ -17,12 +18,13 @@ const List = ({
         (item) => {
             console.log('userId value in List component', userId);
             return (
-                    <ListItem 
+                    <ListItem
                     item={item} 
                     list={list} 
                     setList={setList} 
                     key={item.id} 
                     makeDeleteRequest={makeDeleteRequest}  
+                    makeDeleteAndGetRequest={makeDeleteAndGetRequest}
                     />                    
             );
         });

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {FaCheckCircle} from 'react-icons/fa';
 import {MdRemoveCircle} from 'react-icons/md';
 
@@ -8,10 +8,12 @@ const ListItem = ({
     item, 
     list, 
     setList,
-    makeDeleteRequest 
+    makeDeleteRequest,
+    makeDeleteAndGetRequest 
     }) => {
+
     console.log('ListItem Component Renders');
-    // const [checked, setChecked] = useState(false);
+
     //styling states
     const [classOpen, setClassOpen] = useState('open')
     const [classChecked, setClassChecked] = useState('unchecked');
@@ -30,16 +32,25 @@ const ListItem = ({
 
     //UPDATE LIST TEST
      const updateList = () => {
-        setClassOpen('closed');
-        setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
-        //set Timeout => update list state minus the term, no get request. - katie.
-        console.log('item:',item);
-        makeDeleteRequest(item);
+
+        if (list.length <= 39) {
+            setClassOpen('closed');
+            setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
+            console.log('item:',item);
+            makeDeleteRequest(item);
+        }
+
+        if (list.length > 39) {
+            setClassOpen('closed');
+            setTimeout(() => setDisplay('none'), 190); //prevents weird css spacingbackup when deleting multiple items.
+            console.log('item:',item);
+            makeDeleteAndGetRequest(item);
+        }
+        
     };
     
     //Remember: one list item per component, each with their own personal states.
     //Remember: only the targeted list item will re-render on listitem state change.
-    // just use regular variable to change classname. - katie. (this didn't work for me?)
     return (
         <li 
         className={`${classChecked} ${classOpen}`}
