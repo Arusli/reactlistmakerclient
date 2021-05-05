@@ -23,10 +23,8 @@ import List from './List';
 // 15. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
 
 
-// https://developers.google.com/identity/sign-in/web/sign-in
-// https://developers.google.com/identity/sign-in/web/backend-auth
-
-//NPM VERSION: https://www.youtube.com/watch?v=-OgU5EAcQmo
+//NPM GOOGLE AUTH/LOGIN: 
+//https://www.youtube.com/watch?v=-OgU5EAcQmo
 //https://anthonyjgrove.github.io/react-google-login/?path=/info/google-logout-button--default-button
 //https://www.npmjs.com/package/react-google-login
 //https://dev.to/sivaneshs/add-google-login-to-your-react-apps-in-10-mins-4del
@@ -117,7 +115,7 @@ const App = () => {
       };
 
     //MAKE AND DELETE REQUEST
-        //makeGetRequest only needed to control bug where if a user hits the max list.length
+        // only needed to control bug where if a user hits the max list.length
         // that user won't be able to add items even after they delete items
         // because the list ONLY UPDATES when the get request is called.
         // the deletions are only visual until the getRequest requests and re-renders that list.

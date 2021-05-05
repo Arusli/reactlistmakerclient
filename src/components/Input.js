@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import List from './List';
 
 const Input = (
     {
@@ -33,6 +32,7 @@ const Input = (
         
         if (term === '' || list.length > maxListLength) {
             event.preventDefault();
+            alert('list limit reached')
         }
     }
 
