@@ -18,6 +18,7 @@ import List from './List';
 // 10. SOLVED - decided not to refactor code according to Katie's advice, due to sql ids being used in makeDelete.
 // 11. SOLVED - error handling on server/client side? list size limiting?
 // 12. SOLVED - handle max list size delete bug...
+// 13. Add loading spinner while awaiting api response
 // 13. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 14. re-refactor code, adding appropriate comments.
 // 15. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
@@ -29,8 +30,10 @@ import List from './List';
 //https://www.npmjs.com/package/react-google-login
 //https://dev.to/sivaneshs/add-google-login-to-your-react-apps-in-10-mins-4del
 
+//LOCAL AND REMOTE DB URLS
+// const url = 'http://localhost:3001'
+const url = 'https://listmaker-express-server.herokuapp.com'
 
-const url = 'http://localhost:3001'
 
 const App = () => {
     
@@ -40,7 +43,7 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState('0');
     const [userName, setUserName] = useState('');
-    const [list, setList] = useState([]); 
+    const [list, setList] = useState([]); //default to null in order to use loading spinner?
     //
     const maxListLength = 20;
     //
@@ -80,7 +83,7 @@ const App = () => {
             setList(array);
         }).catch( err => {
             console.log('get request error ', err);
-            alert(err);
+            alert(`get request error: ${err}`);
         });
     };
 
