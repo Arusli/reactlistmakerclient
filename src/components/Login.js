@@ -20,6 +20,7 @@ const Login = ({
 
         //Handles error in case logged out user closes pop up...
         if (response.error && userId === '0') {
+            console.log(response.error)
             setIsLoggedIn(false);
             setUserId('0');
             return;
@@ -27,6 +28,7 @@ const Login = ({
 
         // Handles error in the case that logged in user closes pop up...
         if (response.error && userId !== '0') {
+            console.log(response.error)
             return;
         }
 
