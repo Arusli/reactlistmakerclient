@@ -1,3 +1,14 @@
+Deployment Notes:
+-Deployed to Netlify by connecting github and doing npm run build, then pushing to github. Somehow Netlify can access this build directory even though .gitignore ignores it. Don't quite understand this.
+-Added arusli-listmaker.netlify.app uri to Oauth Javascript permissions.
+-After some time, this seemed to work and enable Login to work.
+-The backend is deployed to Heroku/Clear DB.
+-To update Netlify, simply push any new commits to Github. No need to run build again.
+-Netlify will automatically redeploy a new github commit.
+-For future reference, use these tutorials: 
+https://www.youtube.com/watch?v=lwOsI8LtVEQ
+https://www.youtube.com/watch?v=8KGLOJHqNMg
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
