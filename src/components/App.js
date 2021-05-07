@@ -5,6 +5,19 @@ import Login from './Login';
 import Logout from './Logout';
 import List from './List';
 
+//material ui
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
+
+//material ui
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }));
+
 //MAIN PROBLEMS:
 // 1. SOLVED - list rendering on load problem, via useEffect [userId].
 // 2. SOLVED - Need to conditionally render list/input based on isLoggedIn State.
@@ -44,11 +57,15 @@ const App = () => {
     const [userId, setUserId] = useState('0');
     const [userName, setUserName] = useState('');
     const [list, setList] = useState([]); //default to null in order to use loading spinner?
+    const [requestComplete, setRequestComplete] = useState(false);
     //
     const maxListLength = 20;
     //
     const userIdRef = useRef('0');
     userIdRef.current = userId;
+
+    //material ui
+    const classes = useStyles();
 
     //USE EFFECT RERENDERS APP WHENEVER USER ID CHANGES. THIS REDISPLAYS UPDATED LIST ITEMS.
     useEffect( () => {
@@ -81,6 +98,7 @@ const App = () => {
                 array.push(element);
             });
             setList(array);
+            setRequestComplete(true);
         }).catch( err => {
             console.log('get request error ', err);
             alert(`get request error: ${err}`);
@@ -162,6 +180,11 @@ const App = () => {
                         </div>) : null}
                     </div> 
                 </div>
+
+                   {/* Loading Spinner */}
+                   {requestComplete ? null : (<Backdrop className={classes.backdrop} open>
+                    <CircularProgress color="inherit" />
+                </Backdrop>) }
                 
                 {/* input div */}
                 <div className='fadein' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
@@ -180,6 +203,7 @@ const App = () => {
                         />
                         ) : null}    
                 </div>
+                
 
                 {/* List div */}
                 {isLoggedIn ? (
