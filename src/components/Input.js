@@ -30,7 +30,11 @@ const Input = (
             console.log('user id', userId);
         }
         
-        if (term === '' || list.length > maxListLength) {
+        if (term === '') {
+            event.preventDefault();
+        }
+
+        if (list.length > maxListLength) {
             event.preventDefault();
             alert('list limit reached')
         }
