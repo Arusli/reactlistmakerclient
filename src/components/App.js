@@ -69,7 +69,7 @@ const App = () => {
 
     //USE EFFECT RERENDERS APP WHENEVER USER ID CHANGES. THIS REDISPLAYS UPDATED LIST ITEMS.
     useEffect( () => {
-        console.log('input useEffect renders');
+        console.log('useEffect renders');
         makeGetRequest();
     }, [userId]);
 
@@ -208,7 +208,7 @@ const App = () => {
                 
 
                 {/* List div */}
-                {(isLoggedIn && requestComplete) ? (
+                {(isLoggedIn) ? (
                     <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <List 
                             list={list} 
