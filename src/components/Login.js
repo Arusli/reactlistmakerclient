@@ -36,10 +36,12 @@ const Login = ({
         console.log(response);
         console.log("gapi.auth2.getAuthInstance().isSignedIn.get() =", checkSignedIn());
         setIsLoggedIn(true);
-        setUserId(response.googleId);
+        //I think that when you re-load an already logged on page, since the user id is already pre-set.
+        //Somehow this doesn't actually trigger the userId change
+        //Which in turn doesn't trigger the get request. 
+        //However, this only seems to occur during those server reboot delays.
+        setUserId(response.googleId); 
         setUserName(response.profileObj.name);
-        console.log('user id: ', userId); //stale state problem here
-        console.log('user id ref: ', userIdRef.current) //this is still doing the stale state problem...        
     }
 
     return (

@@ -32,9 +32,17 @@ const useStyles = makeStyles((theme) => ({
 // 11. SOLVED - error handling on server/client side? list size limiting?
 // 12. SOLVED - handle max list size delete bug...
 // 13. SOLVED - Add loading spinner while awaiting api response, and prevent input access while loading.
-// 13. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
-// 14. re-refactor code, adding appropriate comments.
-// 15. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
+
+// 14. BUG - when accessing the site after a long break, the db server takes a while to spin up.
+// and if the user is pre-logged in, their list does not propagate. 
+// It remains empty until they add an item. 
+// I don't think this has anything to do with the added loading spinner, since I took it out and the problem was the same.
+// I belive it has something to do with how often teh page is re-rendering/making get requests.
+// I have set a if (user !== 0) statement to the get request, will push and test now. 
+
+// 15. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
+// 16. re-refactor code, adding appropriate comments.
+// 17. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
 
 
 //NPM GOOGLE AUTH/LOGIN: 
@@ -57,7 +65,7 @@ const App = () => {
     const [userId, setUserId] = useState('0');
     const [userName, setUserName] = useState('');
     const [list, setList] = useState([]); //default to null in order to use loading spinner?
-    // const [requestComplete, setRequestComplete] = useState(false);
+    const [requestComplete, setRequestComplete] = useState(false);
     //
     const maxListLength = 20;
     //
@@ -69,8 +77,10 @@ const App = () => {
 
     //USE EFFECT RERENDERS APP WHENEVER USER ID CHANGES. THIS REDISPLAYS UPDATED LIST ITEMS.
     useEffect( () => {
-        console.log('useEffect renders');
-        makeGetRequest();
+        if (userId !== '0') {
+            console.log('useEffect renders');
+            makeGetRequest();
+        }
     }, [userId]);
 
     //(can i extract these requests/import them from another file somehow?)
@@ -86,7 +96,7 @@ const App = () => {
             }
         })
         .then( res => {
-            // setRequestComplete(true); //I want this to fire first before setList, not after...
+            setRequestComplete(true); //I want this to fire first before setList, not after...
             const array = [];
             console.log('get request response: ', res.data);
             // res.data is an array of objects from sql.
@@ -183,9 +193,9 @@ const App = () => {
                 </div>
 
                    {/* Loading Spinner */}
-                   {/* {requestComplete ? null : (<Backdrop className={classes.backdrop} open>
+                   { (!isLoggedIn || (isLoggedIn && requestComplete)) ? null : (<Backdrop className={classes.backdrop} open>
                     <CircularProgress color="inherit" />
-                </Backdrop>) } */}
+                </Backdrop>) }
                 
                 {/* input div */}
                 <div className='fadein' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
