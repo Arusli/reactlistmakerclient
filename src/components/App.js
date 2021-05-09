@@ -86,6 +86,7 @@ const App = () => {
             }
         })
         .then( res => {
+            setRequestComplete(true); //I want this to fire first before setList, not after...
             const array = [];
             console.log('get request response: ', res.data);
             // res.data is an array of objects from sql.
@@ -98,7 +99,6 @@ const App = () => {
                 array.push(element);
             });
             setList(array);
-            setRequestComplete(true);
         }).catch( err => {
             console.log('get request error ', err);
             alert(`get request error: ${err}`);
