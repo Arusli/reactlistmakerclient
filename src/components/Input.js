@@ -24,10 +24,6 @@ const Input = (
     //ONSUBMIT
     const onSubmit = async (event) => {
 
-        if (requestComplete === false) {
-            event.preventDefault();
-        }
-
         if (term !== '' && list.length <= maxListLength) {
             event.preventDefault();
             await makePostRequest(term.replace(/"/g, "'")); //accounts for sql "" errors
