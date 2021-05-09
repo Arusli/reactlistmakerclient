@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 // 10. SOLVED - decided not to refactor code according to Katie's advice, due to sql ids being used in makeDelete.
 // 11. SOLVED - error handling on server/client side? list size limiting?
 // 12. SOLVED - handle max list size delete bug...
-// 13. Add loading spinner while awaiting api response
+// 13. SOLVED - Add loading spinner while awaiting api response
 // 13. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 14. re-refactor code, adding appropriate comments.
 // 15. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
@@ -196,6 +196,7 @@ const App = () => {
                     {isLoggedIn ? (
                         <Input 
                         userId={userId}
+                        requestComplete={requestComplete}
                         makeGetRequest={makeGetRequest}
                         makePostRequest={makePostRequest}
                         list={list}
