@@ -5,7 +5,6 @@ const Input = (
     userId, 
     makeGetRequest, 
     makePostRequest, 
-    requestComplete,
     list, 
     setList,
     maxListLength

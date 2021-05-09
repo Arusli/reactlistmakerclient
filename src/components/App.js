@@ -57,7 +57,7 @@ const App = () => {
     const [userId, setUserId] = useState('0');
     const [userName, setUserName] = useState('');
     const [list, setList] = useState([]); //default to null in order to use loading spinner?
-    const [requestComplete, setRequestComplete] = useState(false);
+    // const [requestComplete, setRequestComplete] = useState(false);
     //
     const maxListLength = 20;
     //
@@ -86,7 +86,7 @@ const App = () => {
             }
         })
         .then( res => {
-            setRequestComplete(true); //I want this to fire first before setList, not after...
+            // setRequestComplete(true); //I want this to fire first before setList, not after...
             const array = [];
             console.log('get request response: ', res.data);
             // res.data is an array of objects from sql.
@@ -183,9 +183,9 @@ const App = () => {
                 </div>
 
                    {/* Loading Spinner */}
-                   {requestComplete ? null : (<Backdrop className={classes.backdrop} open>
+                   {/* {requestComplete ? null : (<Backdrop className={classes.backdrop} open>
                     <CircularProgress color="inherit" />
-                </Backdrop>) }
+                </Backdrop>) } */}
                 
                 {/* input div */}
                 <div className='fadein' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10vh'}}>
@@ -193,10 +193,9 @@ const App = () => {
                     <h3 style={{margin: '10px'}}>Built with react/node/sql.</h3>
                     {isLoggedIn ? null : (<div className='pulse' style={{fontSize: '2.6rem', margin: '30px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
-                    {(isLoggedIn && requestComplete) ? (
+                    {isLoggedIn ? (
                         <Input 
                         userId={userId}
-                        requestComplete={requestComplete}
                         makeGetRequest={makeGetRequest}
                         makePostRequest={makePostRequest}
                         list={list}
@@ -208,7 +207,7 @@ const App = () => {
                 
 
                 {/* List div */}
-                {(isLoggedIn) ? (
+                {isLoggedIn ? (
                     <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <List 
                             list={list} 
