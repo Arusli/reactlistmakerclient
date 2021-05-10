@@ -6,7 +6,8 @@ const Logout = ({
     setIsLoggedIn, 
     userId, 
     setUserId, 
-    setUserName
+    setUserName,
+    setRequestComplete
     }) => {
         
     console.log('Logout Component Renders');
@@ -19,6 +20,7 @@ const Logout = ({
         await setIsLoggedIn(false);
         await setUserId('0');
         setUserName('');
+        setRequestComplete(false);
         console.log('user id: ', userId); //this is still doing the stale state problem...
     }
 

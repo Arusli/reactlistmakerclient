@@ -40,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
 // I belive it has something to do with how often teh page is re-rendering/making get requests.
 // I have set a if (user !== 0) statement to the get request, will push and test now. 
 // This seems to work!
+
+//  15. BUG - There is when switching between google accounts there is a split second where hte first
+// list is on the page, then the list component repopulates with the second list.
+// I think this is because I removed the makeGetRequest when userID = 0, which happens on logout.
+// I added a setRequestComplete(false) to the logout flow, I think this fixes it.
+
 // 15. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 16. re-refactor code, adding appropriate comments.
 // 17. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
@@ -187,6 +193,7 @@ const App = () => {
                                 userId={userId}
                                 setUserId={setUserId}
                                 setUserName={setUserName}
+                                setRequestComplete={setRequestComplete}
                             />
                         </div>) : null}
                     </div> 
