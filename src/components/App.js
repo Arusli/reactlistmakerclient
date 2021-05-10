@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 // I don't think this has anything to do with the added loading spinner, since I took it out and the problem was the same.
 // I belive it has something to do with how often teh page is re-rendering/making get requests.
 // I have set a if (user !== 0) statement to the get request, will push and test now. 
-
+// This seems to work!
 // 15. maybe add media query's for mobile device, re: reducing fontSize/div height of list items.
 // 16. re-refactor code, adding appropriate comments.
 // 17. testing: https://enzymejs.github.io/enzyme/docs/guides/jest.html
@@ -203,7 +203,7 @@ const App = () => {
                     <h3 style={{margin: '10px'}}>Built with react/node/sql.</h3>
                     {isLoggedIn ? null : (<div className='pulse' style={{fontSize: '2.6rem', margin: '30px', fontWeight: 'bold'}}>Please Log In.</div>)}
                 
-                    {isLoggedIn ? (
+                    {isLoggedIn && requestComplete ? (
                         <Input 
                         userId={userId}
                         makeGetRequest={makeGetRequest}
@@ -217,7 +217,7 @@ const App = () => {
                 
 
                 {/* List div */}
-                {isLoggedIn ? (
+                {isLoggedIn && requestComplete ? (
                     <div style={{border: 'none', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <List 
                             list={list} 
