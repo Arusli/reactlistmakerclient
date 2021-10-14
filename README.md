@@ -1,5 +1,5 @@
 Deployment Notes:
--Deployed to Netlify by connecting github and doing npm run build, then pushing to github. Somehow Netlify can access this build directory even though .gitignore ignores it. Don't quite understand this.
+-Deployed client/frontend to Netlify by connecting github and doing npm run build, then pushing to github. Somehow Netlify can access this build directory even though .gitignore ignores it. Don't quite understand this.
 -Added arusli-listmaker.netlify.app uri to Oauth Javascript permissions.
 -After some time, this seemed to work and enable Login to work.
 -The backend is deployed to Heroku/Clear DB.
