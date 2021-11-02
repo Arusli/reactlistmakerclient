@@ -8,7 +8,9 @@ const List = ({
     makeDeleteRequest, 
     userId, 
     makeDeleteAndGetRequest,
-    maxListLength
+    maxListLength,
+    makeCheckedRequest,
+    makeUncheckedRequest
     }) => {
 
     console.log('List Component Renders');
@@ -27,6 +29,8 @@ const List = ({
                     makeDeleteRequest={makeDeleteRequest}  
                     makeDeleteAndGetRequest={makeDeleteAndGetRequest}
                     maxListLength={maxListLength}
+                    makeCheckedRequest={makeCheckedRequest}
+                    makeUncheckedRequest={makeUncheckedRequest}
                     />                    
             );
         });

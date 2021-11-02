@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 //https://dev.to/sivaneshs/add-google-login-to-your-react-apps-in-10-mins-4del
 
 //LOCAL AND REMOTE DB URLS
-// const url = 'http://localhost:3001'
-const url = 'https://listmaker-express-server.herokuapp.com'
+const url = 'http://localhost:3001'
+// const url = 'https://listmaker-express-server.herokuapp.com'
 
 
 const App = () => {
@@ -87,6 +87,7 @@ const App = () => {
             console.log('useEffect renders');
             makeGetRequest();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId]);
 
     //(can i extract these requests/import them from another file somehow?)
@@ -126,6 +127,38 @@ const App = () => {
         await axios.post(`${url}/post`, {
             content: content,
             userId: userId
+            // userId: userIdRef.current
+        })
+        .then( res => {
+            console.log(res.data);
+            // setRequestComplete(false);
+        }).catch(err => {
+            console.log('post request error ', err);
+        });
+    };
+
+    //CHECKED REQUEST - NEW
+    const makeCheckedRequest = async(item) => {
+        await axios.post(`${url}/check`, {
+            content: true,
+            userId: userId,
+            id: item.id
+            // userId: userIdRef.current
+        })
+        .then( res => {
+            console.log(res.data);
+            // setRequestComplete(false);
+        }).catch(err => {
+            console.log('post request error ', err);
+        });
+    };
+
+       //UNCHECKED REQUEST - NEW
+       const makeUncheckedRequest = async(item) => {
+        await axios.post(`${url}/check`, {
+            content: false,
+            userId: userId,
+            id: item.id
             // userId: userIdRef.current
         })
         .then( res => {
@@ -233,6 +266,8 @@ const App = () => {
                             userId={userId} 
                             makeDeleteAndGetRequest={makeDeleteAndGetRequest}
                             maxListLength={maxListLength}
+                            makeCheckedRequest={makeCheckedRequest}
+                            makeUncheckedRequest={makeUncheckedRequest}
                         />
                     </div>
                 ) : null}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {FaCheckCircle} from 'react-icons/fa';
 import {MdRemoveCircle} from 'react-icons/md';
 
@@ -10,24 +10,42 @@ const ListItem = ({
     setList,
     makeDeleteRequest,
     makeDeleteAndGetRequest,
-    maxListLength
+    maxListLength,
+    makeCheckedRequest,
+    makeUncheckedRequest
     }) => {
 
     console.log('ListItem Component Renders');
+    console.log('item:', item);
 
     //styling states
     const [classOpen, setClassOpen] = useState('open')
     const [classChecked, setClassChecked] = useState('unchecked');
     const [display, setDisplay] = useState('grid');
+
+    //Added empty array as second paramter to ensure useEffect only runs once.
+    //Otherwise beause item.checked has not been updated (for some reason, I guess because we didn't make another get request yet) 
+    //the use effect will override the checking and unchecking state every time the classChecked state is changed..
+    useEffect( ()=> {
+        if (item.checked === 1) {
+            setClassChecked('checked')
+        }
+        if (item.checked === 0) {
+            setClassChecked('unchecked')
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
  
     const checkOff = (e) => {
         e.preventDefault();
         if (classChecked === 'unchecked') {
             setClassChecked('checked')
+            makeCheckedRequest(item);
         }
 
         if (classChecked === 'checked') {
             setClassChecked('unchecked')
+            makeUncheckedRequest(item);
         }
     };
 
