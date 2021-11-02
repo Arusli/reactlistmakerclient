@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 //https://dev.to/sivaneshs/add-google-login-to-your-react-apps-in-10-mins-4del
 
 //LOCAL AND REMOTE DB URLS
-const url = 'http://localhost:3001'
-// const url = 'https://listmaker-express-server.herokuapp.com'
+// const url = 'http://localhost:3001'
+const url = 'https://listmaker-express-server.herokuapp.com'
 
 
 const App = () => {
